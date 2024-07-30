@@ -16,7 +16,7 @@ public class UserPlayer : Player
 
     private int _money = 3;
 
-    protected void Awake()
+    public override void Awake()
     {
         Money = _initialMoney;
         timer.Time = 0.0f;

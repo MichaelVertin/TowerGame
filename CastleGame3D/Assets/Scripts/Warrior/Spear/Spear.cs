@@ -28,7 +28,7 @@ public class Spear : MonoBehaviour
 
             // set other data
             __owner = owner;
-            __dir = direction;
+            __dir = __owner.owner.direction;
             isAirborne = true;
         }
     }

@@ -1,23 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
-public class AIPlayer : Player
+/*
+public class AIPlayer_Default : AIPlayer
 {
-    [SerializeField] private Meteor _meteorPrefab;
-
     [SerializeField] private float _spawnDelay = 3f;
     [SerializeField] private float _spawnRateMult = .99f;
 
     [SerializeField] private float _spellDelay = 10f;
     [SerializeField] private float _spellRateMult = 1f;
-
-    [SerializeField] protected float _shieldSpawnDelay;
-    [SerializeField] protected float _swordSpawnDelay;
-    [SerializeField] protected float _spearSpawnDelay;
-
-    public List<Path> _paths;
 
     public override void Awake()
     {
@@ -34,7 +26,7 @@ public class AIPlayer : Player
 
     public IEnumerator temp()
     {
-        foreach(Path path in _paths)
+        foreach (Path path in _paths)
         {
             StartCoroutine(SpawnAfterTime(_spawnDelay * _shieldSpawnDelay, _shieldWarrior, path));
             StartCoroutine(SpawnAfterTime(_spawnDelay * _swordSpawnDelay, _swordWarrior, path));
@@ -73,7 +65,7 @@ public class AIPlayer : Player
         Meteor spawnedSpell = null;
         float randomPosition = Random.value;
 
-        Transform spawnTrans =SpawnManager.instance.BaseTransforms[this][randomPath];
+        Transform spawnTrans = SpawnManager.instance.BaseTransforms[this][randomPath];
         spawnedSpell = Instantiate<Meteor>(_meteorPrefab);
         spawnedSpell.Init(this);
         SpawnManager.instance.UpdateTransformForPath(spawnedSpell.transform, this, randomPath, randomPosition);
@@ -86,3 +78,4 @@ public class AIPlayer : Player
         return _paths[Random.Range(0, _paths.Count)];
     }
 }
+*/
