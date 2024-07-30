@@ -3299,13 +3299,18 @@ MonoBehaviour:
   _spawnTransforms:
   - {fileID: 167119516}
   - {fileID: 864797672}
-  _warrior1: {fileID: -2167312595053472858, guid: 5eefaee4e88ed7c4ea54efcca5c14e6a, type: 3}
-  _warrior2: {fileID: 9108457961781962799, guid: ee01bc16c6ba8934f8d1afd781aa769b, type: 3}
+  _shieldWarrior: {fileID: -2167312595053472858, guid: 5eefaee4e88ed7c4ea54efcca5c14e6a, type: 3}
+  _swordWarrior: {fileID: 9108457961781962799, guid: ee01bc16c6ba8934f8d1afd781aa769b, type: 3}
+  _spearWarrior: {fileID: 1159166014466481667, guid: 8e923288c40c314429d1f6c1c3bc7c79, type: 3}
+  direction: {x: -1, y: 0, z: 0}
   _meteorPrefab: {fileID: 6547200808901641363, guid: 0dba8f282e401e64392c2414f960ae96, type: 3}
-  _spawnDelay: 20
+  _spawnDelay: 40
   _spawnRateMult: 0.925
   _spellDelay: 15
   _spellRateMult: 0.975
+  _shieldSpawnDelay: 0.01
+  _swordSpawnDelay: 0.25
+  _spearSpawnDelay: 0.5
 --- !u!1 &1755300582
 GameObject:
   m_ObjectHideFlags: 0
@@ -3459,8 +3464,10 @@ MonoBehaviour:
   _spawnTransforms:
   - {fileID: 1556473918}
   - {fileID: 1788615991}
-  _warrior1: {fileID: 9108457961781962799, guid: ee01bc16c6ba8934f8d1afd781aa769b, type: 3}
-  _warrior2: {fileID: -2167312595053472858, guid: 5eefaee4e88ed7c4ea54efcca5c14e6a, type: 3}
+  _shieldWarrior: {fileID: -2167312595053472858, guid: 5eefaee4e88ed7c4ea54efcca5c14e6a, type: 3}
+  _swordWarrior: {fileID: 9108457961781962799, guid: ee01bc16c6ba8934f8d1afd781aa769b, type: 3}
+  _spearWarrior: {fileID: 1159166014466481667, guid: 8e923288c40c314429d1f6c1c3bc7c79, type: 3}
+  direction: {x: 1, y: 0, z: 0}
   _incomeRate: 1
   _initialMoney: 3
   _moneyText: {fileID: 1063352770}

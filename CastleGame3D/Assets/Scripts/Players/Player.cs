@@ -7,9 +7,15 @@ public class Player : MonoBehaviour
 {
     [SerializeField] public List<Transform> _spawnTransforms;
 
-    [SerializeField] protected Warrior _warrior1;
-    [SerializeField] protected Warrior _warrior2;
-    
+    [SerializeField] public Warrior _shieldWarrior;
+    [SerializeField] public Warrior _swordWarrior;
+    [SerializeField] public Warrior _spearWarrior;
+    [SerializeField] public Vector3 direction = new Vector3(0,0,1);
+
+    public virtual void Awake()
+    {
+        direction = direction.normalized;
+    }
 
     public void Start()
     {
