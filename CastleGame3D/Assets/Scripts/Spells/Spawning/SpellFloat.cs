@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpellFloat : SpellPartial
 {
-    [SerializeField] private Meteor spellToSpawn;
+    [SerializeField] private SpellActive spellToSpawn;
 
     public override void Update()
     {
@@ -18,7 +18,9 @@ public class SpellFloat : SpellPartial
         Path path;
         // set onto path if found
         bool foundPath = InputManager.GetObjectUnderMouse<Path>(out path);
-        /* Removed due to need to view spells indepdently from their owner
+        /* 
+        // Removed due to need to view spells indepdently from their owner
+        // Also would need to know orientation of the Player's spawn
         if (foundPath)
         {
             SpawnManager.instance.UpdateTransformForCursor(this.transform, owner, path);
@@ -27,6 +29,7 @@ public class SpellFloat : SpellPartial
         // otherwise, if selected on the ground, set to the position of the ground
         if (InputManager.GetPointUnderMouse<Ground>(out Vector3 position))
         {
+            position.y += SpawnManager.instance.PATH_HEIGHT;
             transform.position = position;
         }
 

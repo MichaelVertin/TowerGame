@@ -14,6 +14,5 @@ public class SpellSingle : Spell
     public override void OnVisualEnd()
     {
         base.OnVisualEnd();
-        Destroy(this.gameObject);
     }
 }

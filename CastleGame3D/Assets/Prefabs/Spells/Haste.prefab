@@ -77,9 +77,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5748807943154575574}
-  - component: {fileID: 6547200808901641363}
+  - component: {fileID: -3870351344280118210}
   m_Layer: 0
-  m_Name: Meteor
+  m_Name: Haste
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ Transform:
   - {fileID: 8663720914811355045}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6547200808901641363
+--- !u!114 &-3870351344280118210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,13 +111,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 9020806768552560939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 046d0f15474eebc41be7d8ecc5c02a17, type: 3}
+  m_Script: {fileID: 11500000, guid: 85ccb66ee01d6db4a9fc3558d6a57c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 7
   owner: {fileID: 0}
-  Damage: 45
-  timeBeforeDamage: 1
+  timeBeforeEffect: 0.1
+  duration: 5
+  speedMultiplier: 1.5
 --- !u!1001 &7865014697218918627
 PrefabInstance:
   m_ObjectHideFlags: 0
