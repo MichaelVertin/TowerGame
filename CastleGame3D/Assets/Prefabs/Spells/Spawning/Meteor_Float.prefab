@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5622a846589c93e4b87b300b331aa679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cost: 0
   owner: {fileID: 0}
   duration: 0.6
   spellToSpawn: {fileID: 6547200808901641363, guid: 0dba8f282e401e64392c2414f960ae96, type: 3}
