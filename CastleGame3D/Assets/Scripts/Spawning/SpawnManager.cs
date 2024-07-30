@@ -22,6 +22,7 @@ public class SpawnManager : MonoBehaviour
     // list of all players and paths
     [SerializeField] private List<Player> players = new List<Player>();
     [SerializeField] private List<Path> paths = new List<Path>();
+    [SerializeField] public float PATH_HEIGHT = 1.0f;
 
     public static SpawnManager instance;
 
@@ -70,14 +71,14 @@ public class SpawnManager : MonoBehaviour
     }
 
     // TODO: replace Meteor with Interface 'Initializable'
-    public Spell SpawnSpellOnPath(Player owner, Path path, Meteor spellPrefab)
+    public SpellActive SpawnSpellOnPath(Player owner, Path path, SpellActive spellPrefab)
     {
-        Meteor spawnedSpell = null;
+        SpellActive spawnedSpell = null;
 
         if(VerifyPlayerPath(owner,path) && owner.VerifySpellSpawn(spellPrefab))
         {
             Transform spawnTrans = BaseTransforms[owner][path];
-            spawnedSpell = Instantiate<Meteor>(spellPrefab);
+            spawnedSpell = Instantiate<SpellActive>(spellPrefab);
             spawnedSpell.Init(owner);
             UpdateTransformForCursor(spawnedSpell.transform, owner, path);
         }
@@ -101,6 +102,7 @@ public class SpawnManager : MonoBehaviour
             Transform baseTrans = BaseTransforms[owner][path];
             Vector3 pos = baseTrans.position;
             pos.x *= 1 - 2 * distFromBase;
+            pos.y += PATH_HEIGHT;
             trans.SetPositionAndRotation(pos, baseTrans.rotation);
             return true;
         }
@@ -116,6 +118,7 @@ public class SpawnManager : MonoBehaviour
                 Transform baseTrans = BaseTransforms[owner][path];
                 // center cursor position
                 cursorPos.z = baseTrans.position.z;
+                cursorPos.y += PATH_HEIGHT;
                 trans.SetPositionAndRotation(cursorPos, baseTrans.rotation);
                 return true;
             }

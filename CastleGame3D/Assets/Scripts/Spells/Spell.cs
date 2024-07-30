@@ -35,7 +35,6 @@ public class Spell : MonoBehaviour
 
     }
 
-    // end visual when 
     public virtual void FixedUpdate()
     {
         if(VFX == null && VisualInitialized)
