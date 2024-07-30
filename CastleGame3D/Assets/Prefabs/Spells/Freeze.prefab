@@ -114,11 +114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8df0aeb68c2a434db8d7b7bc3066376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 7
+  Cost: 3
   owner: {fileID: 0}
   timeBeforeEffect: 0.25
-  duration: 5
-  speedMultiplier: 0.25
+  duration: 7.5
+  speedMultiplier: 0.1
 --- !u!1001 &108525308501911992
 PrefabInstance:
   m_ObjectHideFlags: 0

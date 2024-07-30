@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 0
   owner: {fileID: 0}
-  duration: 0.6
+  duration: 1
   spellToSpawn: {fileID: -3870351344280118210, guid: 0460b352c7d44024890df400a89ab7c7, type: 3}
 --- !u!1001 &7528601607879490392
 PrefabInstance:

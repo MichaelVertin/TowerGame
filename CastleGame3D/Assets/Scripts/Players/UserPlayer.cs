@@ -11,12 +11,15 @@ public class UserPlayer : Player
     [SerializeField] private float _incomeRate = 1f;
     [SerializeField] private int _initialMoney = 3;
     [SerializeField] private TextMeshProUGUI _moneyText;
+    [SerializeField] private Timer timer;
+    [SerializeField] private float _spellDelay = 10f;
 
     private int _money = 3;
 
     protected void Awake()
     {
         Money = _initialMoney;
+        timer.Time = 0.0f;
     }
 
     private int Money
@@ -58,8 +61,11 @@ public class UserPlayer : Player
 
     public void InitializeSpellGeneration(SpellFloat spellFloatPrefab)
     {
-        SpellFloat spell = Instantiate<SpellFloat>(spellFloatPrefab);
-        spell.Init(this);
+        if( timer.Time <= 0.0f )
+        {
+            SpellFloat spell = Instantiate<SpellFloat>(spellFloatPrefab);
+            spell.Init(this);
+        }
     }
 
     public override bool VerifyWarriorSpawn(Warrior warrior)
@@ -82,7 +88,7 @@ public class UserPlayer : Player
         if (futureMoney >= 0)
         {
             Money = futureMoney;
-
+            timer.Time += _spellDelay;
             return true;
         }
         return false;

@@ -114,10 +114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046d0f15474eebc41be7d8ecc5c02a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 7
+  Cost: 5
   owner: {fileID: 0}
-  Damage: 45
-  timeBeforeDamage: 1
+  Damage: 75
+  timeBeforeDamage: 0.9
 --- !u!1001 &7865014697218918627
 PrefabInstance:
   m_ObjectHideFlags: 0
