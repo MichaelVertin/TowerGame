@@ -12,14 +12,22 @@ public class Player : MonoBehaviour
     [SerializeField] public Warrior _spearWarrior;
     [SerializeField] public Vector3 direction = new Vector3(0,0,1);
 
+    public List<Warrior> Warriors = new List<Warrior>();
+    public List<Spell> Spells = new List<Spell>();
+
     public virtual void Awake()
     {
         direction = direction.normalized;
     }
 
-    public void Start()
+    protected virtual void Start()
     {
         OnControlStart();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+
     }
 
     public virtual void OnControlStart()

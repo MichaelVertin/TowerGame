@@ -8,7 +8,6 @@ public class Prefabs : MonoBehaviour
     public static Prefabs instance;
 
     [SerializeField] public Spear spearPrefab;
-    [SerializeField] public PlayVFX PlayVFX;
 
     private void Awake()
     {

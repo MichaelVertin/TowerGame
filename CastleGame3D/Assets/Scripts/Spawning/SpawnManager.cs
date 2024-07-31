@@ -66,7 +66,10 @@ public class SpawnManager : MonoBehaviour
             spawnedWarrior = Instantiate<Warrior>(warrior);
             spawnedWarrior.Init(owner);
             UpdateTransformForPath(spawnedWarrior.transform, owner, path, pathProgression);
+
+            owner.Warriors.Add(spawnedWarrior);
         }
+        
         return spawnedWarrior;
     }
 
@@ -81,8 +84,10 @@ public class SpawnManager : MonoBehaviour
             spawnedSpell = Instantiate<SpellActive>(spellPrefab);
             spawnedSpell.Init(owner);
             UpdateTransformForCursor(spawnedSpell.transform, owner, path);
-        }
 
+            owner.Spells.Add(spawnedSpell);
+        }
+        
         return spawnedSpell;
     }
 
