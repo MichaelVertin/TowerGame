@@ -9,12 +9,13 @@ public class Spear : MonoBehaviour
     [SerializeField] private bool isAirborne = false;
     [SerializeField]  private Warrior __owner;
     private Vector3 __dir;
-    [SerializeField] private WarriorRange __range;
+    [SerializeField] private WeaponRange __range;
 
     public void Awake()
     {
         SpearExit spearExit = GetComponentInChildren<SpearExit>();
         spearExit.init(this);
+        __range = GetComponentInChildren<WeaponRange>();
     }
 
     public void launchSpear(Warrior owner, Vector3 direction)
@@ -24,7 +25,6 @@ public class Spear : MonoBehaviour
             // detach from parent, provide a Range
             transform.parent = null;
             GameObject collObj = gameObject.GetComponentInChildren<Rigidbody>().gameObject;
-            __range = collObj.AddComponent<WarriorRange>();
 
             // set other data
             __owner = owner;
