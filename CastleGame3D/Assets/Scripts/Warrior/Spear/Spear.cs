@@ -30,6 +30,13 @@ public class Spear : MonoBehaviour
             __owner = owner;
             __dir = __owner.owner.direction;
             isAirborne = true;
+
+            // set rotation
+            Vector3 rot = this.transform.eulerAngles;
+            rot.x = 0.0f;
+            rot.y = 0.0f;
+            rot.z = 90.0f;
+            this.transform.eulerAngles = rot;
         }
     }
 
@@ -82,8 +89,14 @@ public class Spear : MonoBehaviour
             Warrior warrior = range.transform.root.GetComponent<Warrior>();
             if (warrior == this.__owner)
             {
-                Destroy(this.gameObject);
+                Invoke("CallDestroy", .1f);
+                //Destroy(this.gameObject);
             }
         }
+    }
+
+    public void CallDestroy()
+    {
+        Destroy(this.gameObject);
     }
 }
