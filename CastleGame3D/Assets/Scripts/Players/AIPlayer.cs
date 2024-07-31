@@ -5,65 +5,46 @@ using UnityEngine;
 
 public class AIPlayer : Player
 {
-    [SerializeField] private Meteor _meteorPrefab;
-
-    [SerializeField] private float _spawnDelay = 3f;
-    [SerializeField] private float _spawnRateMult = .99f;
-
-    [SerializeField] private float _spellDelay = 10f;
-    [SerializeField] private float _spellRateMult = 1f;
-
-    [SerializeField] protected float _shieldSpawnDelay;
-    [SerializeField] protected float _swordSpawnDelay;
-    [SerializeField] protected float _spearSpawnDelay;
+    [SerializeField] protected Meteor _meteorPrefab;
+    [SerializeField] public List<UserPlayer> UserPlayers;
 
     public List<Path> _paths;
 
-    public override void Awake()
+    protected override void Start()
     {
         _paths = new List<Path>(SpawnManager.instance.BaseTransforms[this].Keys);
-    }
-
-    public override void OnControlStart()
-    {
-        StartCoroutine(temp());
-        StartCoroutine(temp2());
-
-        base.OnControlStart();
-    }
-
-    public IEnumerator temp()
-    {
-        foreach(Path path in _paths)
+        _paths = new List<Path>();
+        foreach( var path in SpawnManager.instance.BaseTransforms[this].Keys )
         {
-            StartCoroutine(SpawnAfterTime(_spawnDelay * _shieldSpawnDelay, _shieldWarrior, path));
-            StartCoroutine(SpawnAfterTime(_spawnDelay * _swordSpawnDelay, _swordWarrior, path));
-            StartCoroutine(SpawnAfterTime(_spawnDelay * _spearSpawnDelay, _spearWarrior, path));
+            _paths.Add(path);
         }
-
-        _spawnDelay *= _spawnRateMult;
-
-        yield return new WaitForSeconds(_spawnDelay);
-
-        StartCoroutine(temp());
+        base.Start();
     }
 
-    public IEnumerator temp2()
+    public void SpawnAfterTime(float time, Warrior warrior, Path path)
     {
-        yield return new WaitForSeconds(_spellDelay);
-
-        SpawnRandomSpell();
-
-        _spellDelay *= _spellRateMult;
-
-        StartCoroutine(temp2());
+        StartCoroutine(SpawnAfterTime_IEnum(time, warrior, path));
     }
 
-    public IEnumerator SpawnAfterTime(float time, Warrior warrior, Path path)
+    public IEnumerator SpawnAfterTime_IEnum(float time, Warrior warrior, Path path)
     {
         yield return new WaitForSeconds(time);
+        Spawn(warrior, path);
+    }
 
-        SpawnManager.instance.SpawnWarriorOnPath(this, path, warrior);
+    public void Spawn(Warrior warrior, Path path)
+    {
+        if( path != null)
+        {
+            SpawnManager.instance.SpawnWarriorOnPath(this, path, warrior);
+        }
+        else
+        {
+            foreach(Path pathIter in _paths)
+            {
+                Spawn(warrior, pathIter);
+            }
+        }
     }
 
     public Spell SpawnRandomSpell()
@@ -85,4 +66,6 @@ public class AIPlayer : Player
     {
         return _paths[Random.Range(0, _paths.Count)];
     }
+
+    
 }

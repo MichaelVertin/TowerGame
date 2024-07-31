@@ -13,6 +13,7 @@ public class UserPlayer : Player
     [SerializeField] private TextMeshProUGUI _moneyText;
     [SerializeField] private Timer timer;
     [SerializeField] private float _spellDelay = 10f;
+    [SerializeField] public int MoneyCap = 20;
 
     private int _money = 3;
 
@@ -22,7 +23,7 @@ public class UserPlayer : Player
         timer.Time = 0.0f;
     }
 
-    private int Money
+    public int Money
     {
         get
         {
@@ -30,7 +31,7 @@ public class UserPlayer : Player
         }
         set
         {
-            _money = value;
+            _money = Mathf.Min(value,MoneyCap);
             _moneyText.text = Money.ToString();
         }
     }
@@ -76,7 +77,7 @@ public class UserPlayer : Player
         {
             Money = futureMoney;
 
-            return true;
+            return base.VerifyWarriorSpawn(warrior);
         }
         return false;
     }
@@ -89,7 +90,7 @@ public class UserPlayer : Player
         {
             Money = futureMoney;
             timer.Time += _spellDelay;
-            return true;
+            return base.VerifySpellSpawn(spell);
         }
         return false;
     }
