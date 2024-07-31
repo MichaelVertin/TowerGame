@@ -8,6 +8,8 @@ public class AIPlayer : Player
     [SerializeField] protected Meteor _meteorPrefab;
     [SerializeField] public List<UserPlayer> UserPlayers;
 
+    [SerializeField] protected List<SpellActive> _spells = new List<SpellActive>();
+
     public List<Path> _paths;
 
     protected override void Start()
@@ -47,15 +49,16 @@ public class AIPlayer : Player
         }
     }
 
-    public Spell SpawnRandomSpell()
+    public SpellActive SpawnRandomSpell()
     {
         Path randomPath = GetRandomPath();
+        SpellActive activeSpell = GetRandomSpell();
 
-        Meteor spawnedSpell = null;
+        SpellActive spawnedSpell = null;
         float randomPosition = Random.value;
 
-        Transform spawnTrans =SpawnManager.instance.BaseTransforms[this][randomPath];
-        spawnedSpell = Instantiate<Meteor>(_meteorPrefab);
+        Transform spawnTrans = SpawnManager.instance.BaseTransforms[this][randomPath];
+        spawnedSpell = Instantiate<SpellActive>(activeSpell);
         spawnedSpell.Init(this);
         SpawnManager.instance.UpdateTransformForPath(spawnedSpell.transform, this, randomPath, randomPosition);
 
@@ -67,5 +70,8 @@ public class AIPlayer : Player
         return _paths[Random.Range(0, _paths.Count)];
     }
 
-    
+    public SpellActive GetRandomSpell()
+    {
+        return _spells[Random.Range(0, _spells.Count)];
+    }
 }

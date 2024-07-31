@@ -17,22 +17,32 @@ public class AIPlayer_Wave : AIPlayer
     {
         base.OnControlStart();
 
-        for (int i = 1; i < 20; i++)
+        for (int i = 1; i < 1000; i++)
         {
-            float spawnDelay = 10f / i + 2;
+            float totalTime = 10f;
+            int numEnemies = i;
+            int numSpells = numEnemies * 1 / 2;
+
+            float spell_enemy_ratio = (float)numSpells / (float)numEnemies; // multiply be enemies to get spells
+
+            float spawnDelay = totalTime / numEnemies + 1;
+            float spellDelay = totalTime / numSpells + 1;
             float initialDelay = 5f;
 
             Wave wave = gameObject.AddComponent<Wave>();
             wave.Init(this);
-            wave.AddRepeatingSegment(_shieldWarrior, null, i, spawnDelay, initialDelay);
+            wave.AddRepeatingSegment(_shieldWarrior, null, numEnemies, spawnDelay, initialDelay);
+            wave.AddRepeatingSegment(_meteorPrefab, null, numSpells, spellDelay, initialDelay);
+            wave.SetTimeBaseFromLastSpawn(spawnDelay);
+            
+            wave.AddRepeatingSegment(_swordWarrior,  null, numEnemies, spawnDelay);
+            wave.AddRepeatingSegment(_meteorPrefab, null, numSpells, spellDelay);
             wave.SetTimeBaseFromLastSpawn(spawnDelay);
 
-            wave.AddRepeatingSegment(_swordWarrior,  null, i, spawnDelay);
+            wave.AddRepeatingSegment(_spearWarrior,  null, numEnemies, spawnDelay);
+            wave.AddRepeatingSegment(_meteorPrefab, null, numSpells, spellDelay);
             wave.SetTimeBaseFromLastSpawn(spawnDelay);
-
-            wave.AddRepeatingSegment(_spearWarrior,  null, i, spawnDelay);
-            wave.SetTimeBaseFromLastSpawn(spawnDelay);
-
+            
             _waves.Add(wave);
         }
 
@@ -53,6 +63,7 @@ public class AIPlayer_Wave : AIPlayer
                 // increaseuser's maximum money, and give them full money
                 UserPlayer user = UserPlayers[0];
                 user.MoneyCap += 2;
+                user._incomeRate *= 1.10f;
                 //user.Money = user.MoneyCap;
 
                 // destroy all existing warriors
