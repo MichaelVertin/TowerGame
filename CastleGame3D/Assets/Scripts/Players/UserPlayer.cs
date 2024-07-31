@@ -8,7 +8,7 @@ using System.Threading;
 
 public class UserPlayer : Player
 {
-    [SerializeField] private float _incomeRate = 1f;
+    [SerializeField] public float _incomeRate = 1f;
     [SerializeField] private int _initialMoney = 3;
     [SerializeField] private TextMeshProUGUI _moneyText;
     [SerializeField] private Timer timer;
