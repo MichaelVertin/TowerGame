@@ -10,12 +10,24 @@ public struct WaveSegment_Repeat
     public float Start;
     public Warrior Warrior;
     public Path Path;
+    public Spell Spell;
 
     public WaveSegment_Repeat(Warrior warrior, Path path, int count, float spacing, float start)
     {
         Count = count;
         Spacing = spacing;
         Warrior = warrior;
+        Spell = null;
+        Start = start;
+        Path = path;
+    }
+
+    public WaveSegment_Repeat(Spell spell, Path path, int count, float spacing, float start)
+    {
+        Count = count;
+        Spacing = spacing;
+        Warrior = null;
+        Spell = spell;
         Start = start;
         Path = path;
     }
@@ -46,6 +58,19 @@ public class Wave : MonoBehaviour
         LastSpawn = Mathf.Max(LastSpawn, start + (count-1)*spacing);
     }
 
+    public void AddRepeatingSegment(Spell spell, Path path, int count = 1, float spacing = 0.0f, float start = 0.0f)
+    {
+        // adjust start from the base
+        start += TimeBase;
+
+        WaveSegment_Repeat repeat = new WaveSegment_Repeat(spell, path, count, spacing, start);
+        waveSegmentRepeats.Add(repeat);
+        remainingSpawns += count;
+
+        // recalculate LastSpawn time
+        LastSpawn = Mathf.Max(LastSpawn, start + (count - 1) * spacing);
+    }
+
     public void Init(AIPlayer owner)
     {
         this.owner = owner;
@@ -63,11 +88,19 @@ public class Wave : MonoBehaviour
     {
         yield return new WaitForSeconds(waveSegment.Start);
 
-        for(int warriorInd = 0; warriorInd < waveSegment.Count; warriorInd++ )
+        for(int segmentInd = 0; segmentInd < waveSegment.Count; segmentInd++ )
         {
-            owner.Spawn(waveSegment.Warrior, waveSegment.Path);
-            remainingSpawns -= 1;
+            if( waveSegment.Warrior != null )
+            {
+                owner.Spawn(waveSegment.Warrior, waveSegment.Path);
+            }
+            if( waveSegment.Spell != null )
+            {
+                owner.SpawnRandomSpell();
+            }
+
             yield return new WaitForSeconds(waveSegment.Spacing);
+            remainingSpawns -= 1;
         }
 
         if( remainingSpawns <= 0 )
