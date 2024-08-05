@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // TODO: find a way to combine WarriorRange and WeaponRange into one class
-public class WeaponRange : MonoBehaviour
+public class ProjectileRange : MonoBehaviour
 {
     public List<Warrior> warriors = new List<Warrior>();
     public List<Base> bases = new List<Base>();

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpearExit : MonoBehaviour
+public class ProjectileExit : MonoBehaviour
 {
-    private Spear __owner = null;
+    private Projectile __owner = null;
 
-    public void init(Spear spear)
+    public void init(Projectile projectile)
     {
-        __owner = spear;
+        __owner = projectile;
     }
 
     private void OnTriggerExit(Collider other)

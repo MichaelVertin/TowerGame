@@ -18,15 +18,15 @@ public class WarriorFloat : MonoBehaviour
             Debug.LogError("WarriorFloat Not Initialized");
         }
 
-        Path path;
-        bool foundPath = InputManager.GetObjectUnderMouse<Path>(out path);
         // if selected on the path, set to 10% away from the owner's base
+        bool foundPath = InputManager.GetObjectUnderMouse<Path>(out Path path);
         if (foundPath)
         {
-            SpawnManager.instance.UpdateTransformForPath(this.transform, owner, path, .1f);
+            SpawnManager.instance.UpdateTransform(SpawnManager.SPAWN_CONTROL.FROM_BASE, this.transform, owner, path, .1f);
+
         }
         // otherwise, if selected on the ground, set to the position of the ground
-        else if(InputManager.GetPointUnderMouse<Ground>(out Vector3 position) )
+        else if(InputManager.GetObjectUnderMouse<Ground>(out Vector3 position) )
         {
             transform.position = position;
         }
@@ -35,10 +35,7 @@ public class WarriorFloat : MonoBehaviour
         // place the object on button release
         if (InputManager.WasLeftMouseButtonReleased)
         {
-            if( foundPath )
-            {
-                SpawnManager.instance.SpawnWarriorOnPath(owner, path, warriorToSpawn);
-            }
+            SpawnManager.instance.Spawn(warriorToSpawn, SpawnManager.SPAWN_CONTROL.FROM_BASE, owner, path);
             Destroy(this.gameObject);
         }
     }

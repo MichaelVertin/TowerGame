@@ -69,7 +69,7 @@ public class UserPlayer : Player
         }
     }
 
-    public override bool VerifyWarriorSpawn(Warrior warrior)
+    public override bool VerifySpawn(Warrior warrior)
     {
         int futureMoney = Money - warrior.Cost;
 
@@ -77,12 +77,12 @@ public class UserPlayer : Player
         {
             Money = futureMoney;
 
-            return base.VerifyWarriorSpawn(warrior);
+            return base.VerifySpawn(warrior);
         }
         return false;
     }
 
-    public override bool VerifySpellSpawn(Spell spell)
+    public override bool VerifySpawn(Spell spell)
     {
         int futureMoney = Money - spell.Cost;
 
@@ -90,7 +90,7 @@ public class UserPlayer : Player
         {
             Money = futureMoney;
             timer.Time += _spellDelay;
-            return base.VerifySpellSpawn(spell);
+            return base.VerifySpawn(spell);
         }
         return false;
     }

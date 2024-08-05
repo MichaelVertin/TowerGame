@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,7 +37,7 @@ public class InputManager : MonoBehaviour
 
     #region raycasts
 
-    public static bool GetPointUnderMouse<SearchType>(out Vector3 result)
+    public static bool GetObjectUnderMouse<SearchType>(out Vector3 result)
     {
         if (GetRaycastHitUnderMouse<SearchType>(out RaycastHit hit))
         {
@@ -73,6 +74,20 @@ public class InputManager : MonoBehaviour
         }
 
         result = default(SearchType);
+        return false;
+    }
+
+    public static bool GetObjectUnderMouse<SearchType>(out SearchType outObject, out Vector3 outPoint)
+    {
+        if (GetRaycastHitUnderMouse<SearchType>(out RaycastHit rayHit))
+        {
+            outObject = GetComponentBySearch<SearchType>(rayHit.collider);
+            outPoint = rayHit.point;
+            return true;
+        }
+
+        outObject = default(SearchType);
+        outPoint = Vector3.zero;
         return false;
     }
 
