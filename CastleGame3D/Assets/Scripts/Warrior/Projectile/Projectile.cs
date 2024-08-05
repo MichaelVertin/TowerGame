@@ -4,21 +4,21 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Spear : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     [SerializeField] private bool isAirborne = false;
     [SerializeField]  private Warrior __owner;
     private Vector3 __dir;
-    [SerializeField] private WeaponRange __range;
+    [SerializeField] private ProjectileRange __range;
 
     public void Awake()
     {
-        SpearExit spearExit = GetComponentInChildren<SpearExit>();
-        spearExit.init(this);
-        __range = GetComponentInChildren<WeaponRange>();
+        ProjectileExit projectileExit = GetComponentInChildren<ProjectileExit>();
+        projectileExit.init(this);
+        __range = GetComponentInChildren<ProjectileRange>();
     }
 
-    public void launchSpear(Warrior owner, Vector3 direction)
+    public void launch(Warrior owner, Vector3 direction)
     {
         if (!isAirborne)
         {
@@ -82,7 +82,7 @@ public class Spear : MonoBehaviour
             return;
         }
 
-        // Destroy spear on exit range
+        // Destroy projectile on exit range
         WarriorRange range = other.GetComponent<WarriorRange>();
         if (range != null)
         {

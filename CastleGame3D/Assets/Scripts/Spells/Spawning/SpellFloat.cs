@@ -15,19 +15,16 @@ public class SpellFloat : SpellPartial
             Debug.LogError("SpellFloat Not Initialized");
         }
 
-        Path path;
-        // set onto path if found
-        bool foundPath = InputManager.GetObjectUnderMouse<Path>(out path);
         /* 
         // Removed due to need to view spells indepdently from their owner
         // Also would need to know orientation of the Player's spawn
-        if (foundPath)
+        if (InputManager.GetObjectUnderMouse<Path>(out path))
         {
             SpawnManager.instance.UpdateTransformForCursor(this.transform, owner, path);
         }
         */
         // otherwise, if selected on the ground, set to the position of the ground
-        if (InputManager.GetPointUnderMouse<Ground>(out Vector3 position))
+        if (InputManager.GetObjectUnderMouse<Ground>(out Vector3 position))
         {
             position.y += SpawnManager.instance.PATH_HEIGHT;
             transform.position = position;
@@ -37,10 +34,7 @@ public class SpellFloat : SpellPartial
         // place the object on button release
         if (InputManager.WasLeftMouseButtonReleased)
         {
-            if (foundPath)
-            {
-                SpawnManager.instance.SpawnSpellOnPath(owner, path, spellToSpawn);
-            }
+            SpawnManager.instance.Spawn(spellToSpawn, SpawnManager.SPAWN_CONTROL.FROM_CURSOR, owner);
             Destroy(this.gameObject);
         }
     }
@@ -49,4 +43,4 @@ public class SpellFloat : SpellPartial
     {
         owner = ownerPar;
     }
-}
+} 

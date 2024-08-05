@@ -97,7 +97,7 @@ public class Warrior : MonoBehaviour
             }
         }
 
-        // Warrior has died
+        // this Warrior has died
         if (Health <= 0 || _animator.runtimeAnimatorController == _deathController)
         {
             // skip if no health

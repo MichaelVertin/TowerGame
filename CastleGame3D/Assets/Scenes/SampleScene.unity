@@ -620,7 +620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 1656317474}
   _slider: {fileID: 57258751}
-  _maxHealth: 1000
+  _maxHealth: 5000
 --- !u!54 &238051142
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2788,7 +2788,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c7c91a7b4c1b149aa8082cf958e57a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spearPrefab: {fileID: -6143734270575235961, guid: dc75ba51bf672ed4c8563e4a7667b208, type: 3}
+  Spear: {fileID: -6143734270575235961, guid: dc75ba51bf672ed4c8563e4a7667b208, type: 3}
+  WarriorShield: {fileID: -2167312595053472858, guid: 5eefaee4e88ed7c4ea54efcca5c14e6a, type: 3}
+  WarriorSword: {fileID: 9108457961781962799, guid: ee01bc16c6ba8934f8d1afd781aa769b, type: 3}
+  WarriorSpear: {fileID: 1159166014466481667, guid: 8e923288c40c314429d1f6c1c3bc7c79, type: 3}
+  Meteor: {fileID: 6547200808901641363, guid: 0dba8f282e401e64392c2414f960ae96, type: 3}
+  Haste: {fileID: -3870351344280118210, guid: 0460b352c7d44024890df400a89ab7c7, type: 3}
+  Freeze: {fileID: 5180792859464745469, guid: 6ca4886675a046a4ab5c07922be267bc, type: 3}
+  Warriors:
+  - {fileID: -2167312595053472858, guid: 5eefaee4e88ed7c4ea54efcca5c14e6a, type: 3}
+  - {fileID: 1159166014466481667, guid: 8e923288c40c314429d1f6c1c3bc7c79, type: 3}
+  - {fileID: 9108457961781962799, guid: ee01bc16c6ba8934f8d1afd781aa769b, type: 3}
+  Spells:
+  - {fileID: 6547200808901641363, guid: 0dba8f282e401e64392c2414f960ae96, type: 3}
+  - {fileID: -3870351344280118210, guid: 0460b352c7d44024890df400a89ab7c7, type: 3}
+  - {fileID: 5180792859464745469, guid: 6ca4886675a046a4ab5c07922be267bc, type: 3}
 --- !u!1 &1400250519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2960,7 +2974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 1914661636}
   _slider: {fileID: 1583400529}
-  _maxHealth: 1000
+  _maxHealth: 2000
 --- !u!1 &1485056286
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,19 +3411,11 @@ MonoBehaviour:
   _spawnTransforms:
   - {fileID: 864797672}
   - {fileID: 167119516}
-  _shieldWarrior: {fileID: -2167312595053472858, guid: 5eefaee4e88ed7c4ea54efcca5c14e6a, type: 3}
-  _swordWarrior: {fileID: 9108457961781962799, guid: ee01bc16c6ba8934f8d1afd781aa769b, type: 3}
-  _spearWarrior: {fileID: 1159166014466481667, guid: 8e923288c40c314429d1f6c1c3bc7c79, type: 3}
   direction: {x: -1, y: 0, z: 0}
   Warriors: []
   Spells: []
-  _meteorPrefab: {fileID: 6547200808901641363, guid: 0dba8f282e401e64392c2414f960ae96, type: 3}
   UserPlayers:
   - {fileID: 1914661636}
-  _spells:
-  - {fileID: 5180792859464745469, guid: 6ca4886675a046a4ab5c07922be267bc, type: 3}
-  - {fileID: -3870351344280118210, guid: 0460b352c7d44024890df400a89ab7c7, type: 3}
-  - {fileID: 6547200808901641363, guid: 0dba8f282e401e64392c2414f960ae96, type: 3}
   _paths:
   - {fileID: 1331393116}
   - {fileID: 1200977362}
@@ -3492,9 +3498,6 @@ MonoBehaviour:
   _spawnTransforms:
   - {fileID: 1556473918}
   - {fileID: 1788615991}
-  _shieldWarrior: {fileID: -2167312595053472858, guid: 5eefaee4e88ed7c4ea54efcca5c14e6a, type: 3}
-  _swordWarrior: {fileID: 9108457961781962799, guid: ee01bc16c6ba8934f8d1afd781aa769b, type: 3}
-  _spearWarrior: {fileID: 1159166014466481667, guid: 8e923288c40c314429d1f6c1c3bc7c79, type: 3}
   direction: {x: 1, y: 0, z: 0}
   Warriors: []
   Spells: []

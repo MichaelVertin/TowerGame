@@ -23,24 +23,22 @@ public class AIPlayer_Wave : AIPlayer
             int numEnemies = i;
             int numSpells = numEnemies * 1 / 2;
 
-            float spell_enemy_ratio = (float)numSpells / (float)numEnemies; // multiply be enemies to get spells
-
             float spawnDelay = totalTime / numEnemies + 1;
             float spellDelay = totalTime / numSpells + 1;
             float initialDelay = 5f;
 
             Wave wave = gameObject.AddComponent<Wave>();
             wave.Init(this);
-            wave.AddRepeatingSegment(_shieldWarrior, null, numEnemies, spawnDelay, initialDelay);
-            wave.AddRepeatingSegment(_meteorPrefab, null, numSpells, spellDelay, initialDelay);
+            wave.AddRepeatingSegment(Prefabs.instance.WarriorShield, null, numEnemies, spawnDelay, initialDelay);
+            wave.AddRepeatingSegment(GetRandomSpell(), GetRandomPath(), numSpells, spellDelay, initialDelay);
             wave.SetTimeBaseFromLastSpawn(spawnDelay);
             
-            wave.AddRepeatingSegment(_swordWarrior,  null, numEnemies, spawnDelay);
-            wave.AddRepeatingSegment(_meteorPrefab, null, numSpells, spellDelay);
+            wave.AddRepeatingSegment(Prefabs.instance.WarriorSword, null, numEnemies, spawnDelay);
+            wave.AddRepeatingSegment(GetRandomSpell(), GetRandomPath(), numSpells, spellDelay);
             wave.SetTimeBaseFromLastSpawn(spawnDelay);
 
-            wave.AddRepeatingSegment(_spearWarrior,  null, numEnemies, spawnDelay);
-            wave.AddRepeatingSegment(_meteorPrefab, null, numSpells, spellDelay);
+            wave.AddRepeatingSegment(Prefabs.instance.WarriorSpear,  null, numEnemies, spawnDelay);
+            wave.AddRepeatingSegment(GetRandomSpell(), GetRandomPath(), numSpells, spellDelay);
             wave.SetTimeBaseFromLastSpawn(spawnDelay);
             
             _waves.Add(wave);
@@ -60,7 +58,7 @@ public class AIPlayer_Wave : AIPlayer
             // between waves:
             if( _WaveNumber != 1 )
             {
-                // increaseuser's maximum money, and give them full money
+                // increase user's maximum money, and give them full money
                 UserPlayer user = UserPlayers[0];
                 user.MoneyCap += 2;
                 user._incomeRate *= 1.10f;
@@ -71,9 +69,9 @@ public class AIPlayer_Wave : AIPlayer
                 {
                     for( float distFromBase = 0.01f; distFromBase <= .99f; distFromBase += .1f)
                     {
-                        Meteor meteor = Instantiate<Meteor>(_meteorPrefab);
+                        Meteor meteor = Instantiate<Meteor>(Prefabs.instance.Meteor);
                         meteor.Init(this);
-                        SpawnManager.instance.UpdateTransformForPath(meteor.transform, this, path, distFromBase);
+                        SpawnManager.instance.UpdateTransform(SpawnManager.SPAWN_CONTROL.FROM_BASE, meteor.transform, this, path, distFromBase);
                     }
                 }
             }
@@ -103,12 +101,5 @@ public class AIPlayer_Wave : AIPlayer
         }
 
         base.FixedUpdate();
-
-    }
-
-    protected IEnumerator PlayWave_Delayed(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        PlayWave();
     }
 }

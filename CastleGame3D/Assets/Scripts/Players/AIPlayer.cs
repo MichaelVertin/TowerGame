@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static SpawnManager;
 
 public class AIPlayer : Player
 {
-    [SerializeField] protected Meteor _meteorPrefab;
     [SerializeField] public List<UserPlayer> UserPlayers;
-
-    [SerializeField] protected List<SpellActive> _spells = new List<SpellActive>();
 
     public List<Path> _paths;
 
@@ -38,7 +38,7 @@ public class AIPlayer : Player
     {
         if( path != null)
         {
-            SpawnManager.instance.SpawnWarriorOnPath(this, path, warrior);
+            SpawnManager.instance.Spawn(warrior, SPAWN_CONTROL.FROM_BASE, this, path);
         }
         else
         {
@@ -49,29 +49,37 @@ public class AIPlayer : Player
         }
     }
 
+    public void Spawn(SpellActive spell, Path path)
+    {
+        if (path != null)
+        {
+            SpawnManager.instance.Spawn(spell, SPAWN_CONTROL.RANDOM, this, path);
+        }
+        else
+        {
+            foreach (Path pathIter in _paths)
+            {
+                Spawn(spell, pathIter);
+            }
+        }
+    }
+
     public SpellActive SpawnRandomSpell()
     {
         Path randomPath = GetRandomPath();
         SpellActive activeSpell = GetRandomSpell();
 
-        SpellActive spawnedSpell = null;
-        float randomPosition = Random.value;
-
-        Transform spawnTrans = SpawnManager.instance.BaseTransforms[this][randomPath];
-        spawnedSpell = Instantiate<SpellActive>(activeSpell);
-        spawnedSpell.Init(this);
-        SpawnManager.instance.UpdateTransformForPath(spawnedSpell.transform, this, randomPath, randomPosition);
-
-        return spawnedSpell;
+        return SpawnManager.instance.Spawn(activeSpell, SPAWN_CONTROL.RANDOM, this, randomPath);
     }
 
-    private Path GetRandomPath()
+    protected Path GetRandomPath()
     {
         return _paths[Random.Range(0, _paths.Count)];
     }
 
     public SpellActive GetRandomSpell()
     {
-        return _spells[Random.Range(0, _spells.Count)];
+        List<SpellActive> spells = Prefabs.instance.Spells;
+        return spells[Random.Range(0, spells.Count)];
     }
 }

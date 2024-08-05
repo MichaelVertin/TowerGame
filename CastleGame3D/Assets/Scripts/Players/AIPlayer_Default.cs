@@ -27,9 +27,9 @@ public class AIPlayer_Default : AIPlayer
     {
         foreach (Path path in _paths)
         {
-            SpawnAfterTime(_spawnDelay * _shieldSpawnDelay, _shieldWarrior, path);
-            SpawnAfterTime(_spawnDelay * _swordSpawnDelay, _swordWarrior, path);
-            SpawnAfterTime(_spawnDelay * _spearSpawnDelay, _spearWarrior, path);
+            SpawnAfterTime(_spawnDelay * _shieldSpawnDelay, Prefabs.instance.WarriorShield, path);
+            SpawnAfterTime(_spawnDelay * _swordSpawnDelay, Prefabs.instance.WarriorSword, path);
+            SpawnAfterTime(_spawnDelay * _spearSpawnDelay, Prefabs.instance.WarriorSpear, path);
         }
 
         _spawnDelay *= _spawnRateMult;

@@ -12,6 +12,7 @@ public class Spell : MonoBehaviour
     protected PlayDecalVFX.PlayVFX VFX = null;
     protected Collider _collider = null;
     protected bool VisualInitialized = false;
+    protected bool OnVisualEndCalled = false;
 
     // TODO: move elsewhere
     public Player owner;
@@ -37,7 +38,7 @@ public class Spell : MonoBehaviour
 
     public virtual void FixedUpdate()
     {
-        if(VFX == null && VisualInitialized)
+        if(VFX == null && VisualInitialized && !OnVisualEndCalled)
         {
             OnVisualEnd();
         }
@@ -52,15 +53,11 @@ public class Spell : MonoBehaviour
     {
         VFX = this.VisualEffect.gameObject.AddComponent<PlayDecalVFX.PlayVFX>();
         VisualInitialized = true;
+        OnVisualEndCalled = false;
     }
 
     public virtual void OnVisualEnd()
     {
-        
-    }
-
-    public virtual void OnTriggerEnter()
-    {
-
+        OnVisualEndCalled = true;
     }
 }
