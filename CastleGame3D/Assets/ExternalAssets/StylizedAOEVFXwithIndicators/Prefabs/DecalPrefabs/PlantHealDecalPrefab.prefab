@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4737139232219105440}
   - component: {fileID: 7770124109181182798}
   - component: {fileID: 3492724286977114396}
-  - component: {fileID: 1442794497501675310}
   m_Layer: 0
   m_Name: PlantHealDecalPrefab
   m_TagString: Untagged
@@ -113,18 +112,6 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1442794497501675310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863696848358669098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b990214d0acf0c47b7fd649acbb98d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8522385013168687537
 GameObject:
   m_ObjectHideFlags: 0

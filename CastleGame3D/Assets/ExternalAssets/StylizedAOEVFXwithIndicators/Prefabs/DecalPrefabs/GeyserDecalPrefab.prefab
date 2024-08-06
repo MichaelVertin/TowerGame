@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3994067784437255968}
   - component: {fileID: 3830856962485847482}
   - component: {fileID: 811341319723546406}
-  - component: {fileID: 5432563931845424159}
   m_Layer: 0
   m_Name: GeyserDecalPrefab
   m_TagString: Untagged
@@ -113,18 +112,6 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5432563931845424159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2405776118969034995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b990214d0acf0c47b7fd649acbb98d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7624985491792836412
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: bc59d7259c605e7468188437db3be9cc, type: 2}
+  m_Material: {fileID: 2100000, guid: 31d0dcc6f2dd4e4408d18036a2c93862, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 1
   m_StartAngleFade: 180

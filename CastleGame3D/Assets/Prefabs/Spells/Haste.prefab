@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 3
-  owner: {fileID: 0}
   timeBeforeEffect: 0.1
   duration: 5
   speedMultiplier: 1.5
@@ -175,7 +174,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1442794497501675310, guid: 59f87adf2f772c4469010e8dfb9bddc1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

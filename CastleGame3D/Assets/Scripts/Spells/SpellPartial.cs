@@ -9,6 +9,7 @@ public class SpellPartial : Spell
     public override void Awake()
     {
         base.Awake();
+        VisualInit();
         Invoke("_VisualEffectPause", duration);
     }
 

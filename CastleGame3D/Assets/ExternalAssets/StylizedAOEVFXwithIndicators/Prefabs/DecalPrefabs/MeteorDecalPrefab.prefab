@@ -67,7 +67,6 @@ GameObject:
   - component: {fileID: 7074233988132426305}
   - component: {fileID: 8556773316965324241}
   - component: {fileID: 8843853845262981627}
-  - component: {fileID: 2627797319515695679}
   m_Layer: 0
   m_Name: MeteorDecalPrefab
   m_TagString: Untagged
@@ -169,15 +168,3 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2627797319515695679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7883966873594125846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b990214d0acf0c47b7fd649acbb98d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
