@@ -4,7 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class Spell : MonoBehaviour
+public class Spell : MonoBehaviour, IOwnable
 {
     [SerializeField] public int Cost = 0;
 
@@ -14,8 +14,7 @@ public class Spell : MonoBehaviour
     protected bool VisualInitialized = false;
     protected bool OnVisualEndCalled = false;
 
-    // TODO: move elsewhere
-    public Player owner;
+    public Player Owner { get; set; }
 
     public VisualEffect VisualEffect
     {
@@ -59,5 +58,10 @@ public class Spell : MonoBehaviour
     public virtual void OnVisualEnd()
     {
         OnVisualEndCalled = true;
+    }
+
+    public virtual void Init(Player owner)
+    {
+        this.Owner = owner;
     }
 }

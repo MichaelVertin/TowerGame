@@ -4,17 +4,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IOwnable
 {
     [SerializeField] private bool isAirborne = false;
     [SerializeField]  private Warrior __owner;
     private Vector3 __dir;
     [SerializeField] private ProjectileRange __range;
 
+    public Player Owner { get; set; }
+
     public void Awake()
     {
         ProjectileExit projectileExit = GetComponentInChildren<ProjectileExit>();
-        projectileExit.init(this);
+        projectileExit.Init(this);
         __range = GetComponentInChildren<ProjectileRange>();
     }
 
@@ -28,7 +30,8 @@ public class Projectile : MonoBehaviour
 
             // set other data
             __owner = owner;
-            __dir = __owner.owner.direction;
+            Owner = __owner.Owner;
+            __dir = Owner.direction;
             isAirborne = true;
 
             // set rotation
@@ -55,7 +58,7 @@ public class Projectile : MonoBehaviour
         {
             foreach( Warrior warrior in __range.warriors )
             {
-                if( warrior.owner != __owner.owner )
+                if( Methods.HasEnemy(this, warrior) )
                 {
                     __owner.AttackEnemy(warrior);
                     Destroy(this.gameObject);
@@ -65,7 +68,7 @@ public class Projectile : MonoBehaviour
 
             foreach (Base enemyBase in __range.bases)
             {
-                if (enemyBase.owner != __owner.owner)
+                if( Methods.HasEnemy(this, enemyBase) )
                 {
                     __owner.AttackBase( enemyBase );
                     Destroy(this.gameObject);
@@ -86,11 +89,10 @@ public class Projectile : MonoBehaviour
         WarriorRange range = other.GetComponent<WarriorRange>();
         if (range != null)
         {
-            Warrior warrior = range.transform.root.GetComponent<Warrior>();
+            Warrior warrior = range.GetComponentInParent<Warrior>();
             if (warrior == this.__owner)
             {
                 Invoke("CallDestroy", .1f);
-                //Destroy(this.gameObject);
             }
         }
     }
