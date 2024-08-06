@@ -24,7 +24,7 @@ public class Haste : SpellActive
     {
         foreach( Warrior warrior in _range.warriors )
         {
-            if( warrior != null && warrior.owner == this.owner)
+            if( warrior != null && Methods.HasAlly(this, warrior))
             {
                 _affectedWarriors.Add(warrior);
                 Animator anim = warrior.GetComponent<Animator>();

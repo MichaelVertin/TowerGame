@@ -5,9 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Base : MonoBehaviour
+public class Base : MonoBehaviour, IOwnable
 {
-    [SerializeField] public Player owner;
+    [SerializeField] public Player Owner { get; set; }
     [SerializeField] private Slider _slider;
 
     #region DamagableClass
@@ -32,28 +32,9 @@ public class Base : MonoBehaviour
         _currentHealth = _maxHealth;
     }
 
-    /*
-    public void OnTriggerEnter(Collider other)
-    {
-        Warrior warrior = other.GetComponentInParent<Warrior>();
-
-        if ( warrior != null && warrior.owner != this.owner )
-        {
-            warrior.OnDeath();
-        }
-    }
-    */
-
     protected void Update()
     {
         _slider.value = _currentHealth / _maxHealth;
-        /*var fill = (slider as UnityEngine.UI.Slider).GetComponentsInChildren<UnityEngine.UI.Image>().FirstOrDefault(t => t.name == "Fill");
-        if (fill != null)
-        {
-            fill.color = Color.Lerp(Color.red, Color.green, 0.5);
-        }
-        */
-
         UnityEngine.Color color = UnityEngine.Color.Lerp(UnityEngine.Color.red, UnityEngine.Color.green, _slider.value);
         _slider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = color;
     }

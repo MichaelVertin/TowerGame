@@ -6,7 +6,7 @@ public class ProjectileExit : MonoBehaviour
 {
     private Projectile __owner = null;
 
-    public void init(Projectile projectile)
+    public void Init(Projectile projectile)
     {
         __owner = projectile;
     }

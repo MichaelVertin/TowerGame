@@ -9,7 +9,7 @@ public class SpellFloat : SpellPartial
     public override void Update()
     {
         // must be initialized immidiately
-        if (owner == null)
+        if (Owner == null)
         {
             Destroy(this.gameObject);
             Debug.LogError("SpellFloat Not Initialized");
@@ -34,13 +34,8 @@ public class SpellFloat : SpellPartial
         // place the object on button release
         if (InputManager.WasLeftMouseButtonReleased)
         {
-            SpawnManager.instance.Spawn(spellToSpawn, SpawnManager.SPAWN_CONTROL.FROM_CURSOR, owner);
+            SpawnManager.instance.Spawn(spellToSpawn, SpawnManager.SPAWN_CONTROL.FROM_CURSOR, Owner);
             Destroy(this.gameObject);
         }
-    }
-
-    public void Init(UserPlayer ownerPar)
-    {
-        owner = ownerPar;
     }
 } 

@@ -4,9 +4,9 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Warrior : MonoBehaviour
+public class Warrior : MonoBehaviour, IOwnable
 {
-    public Player owner;
+    public Player Owner { get; set; }
     private bool _InitSuccess;
 
     private Animator _animator;
@@ -43,7 +43,7 @@ public class Warrior : MonoBehaviour
 
     public void Init(Player owner)
     {
-        this.owner = owner;
+        this.Owner = owner;
 
         _InitSuccess = true;
     }
@@ -81,7 +81,7 @@ public class Warrior : MonoBehaviour
         Warrior enemyWarrior = null;
         foreach (Warrior warrior in _range.warriors)
         {
-            if (warrior != null && warrior.owner != this.owner)
+            if (warrior != null && Methods.HasEnemy(this, warrior))
             {
                 enemyWarrior = warrior;
                 break;
@@ -90,7 +90,7 @@ public class Warrior : MonoBehaviour
 
         foreach (Base otherBase in _range.bases)
         {
-            if (otherBase.owner != this.owner)
+            if( Methods.HasEnemy(this, otherBase) )
             {
                 enemyBase = otherBase;
                 break;
@@ -154,7 +154,7 @@ public class Warrior : MonoBehaviour
         Warrior enemyWarrior = null;
         foreach (Warrior warrior in warriors)
         {
-            if (warrior != null && warrior.owner != this.owner)
+            if (warrior != null && Methods.HasEnemy(this,warrior))
             {
                 enemyWarrior = warrior;
                 break;
@@ -163,14 +163,14 @@ public class Warrior : MonoBehaviour
 
         foreach (Base otherBase in _range.bases)
         {
-            if (otherBase.owner != this.owner)
+            if (Methods.HasEnemy(this,otherBase))
             {
                 enemyBase = otherBase;
                 break;
             }
         }
 
-            // Enemy warrior in range -> attack enemy
+        // Enemy warrior in range -> attack enemy
         if (enemyWarrior != null)
         {
             AttackEnemy(enemyWarrior);

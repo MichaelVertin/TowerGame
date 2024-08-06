@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class WarriorFloat : MonoBehaviour
+public class WarriorFloat : MonoBehaviour, IOwnable
 {
     [SerializeField] private Warrior warriorToSpawn;
-    UserPlayer owner;
-
+    public Player Owner { get; set; }
 
     protected void Update()
     {
         // must be initialized immidiately
-        if( owner == null )
+        if( Owner == null )
         {
             Destroy(this.gameObject);
             Debug.LogError("WarriorFloat Not Initialized");
@@ -22,7 +21,7 @@ public class WarriorFloat : MonoBehaviour
         bool foundPath = InputManager.GetObjectUnderMouse<Path>(out Path path);
         if (foundPath)
         {
-            SpawnManager.instance.UpdateTransform(SpawnManager.SPAWN_CONTROL.FROM_BASE, this.transform, owner, path, .1f);
+            SpawnManager.instance.UpdateTransform(SpawnManager.SPAWN_CONTROL.FROM_BASE, this.transform, Owner, path, .1f);
 
         }
         // otherwise, if selected on the ground, set to the position of the ground
@@ -35,13 +34,13 @@ public class WarriorFloat : MonoBehaviour
         // place the object on button release
         if (InputManager.WasLeftMouseButtonReleased)
         {
-            SpawnManager.instance.Spawn(warriorToSpawn, SpawnManager.SPAWN_CONTROL.FROM_BASE, owner, path);
+            SpawnManager.instance.Spawn(warriorToSpawn, SpawnManager.SPAWN_CONTROL.FROM_BASE, Owner, path);
             Destroy(this.gameObject);
         }
     }
 
     public void Init(UserPlayer ownerPar)
     {
-        owner = ownerPar;
+        Owner = ownerPar;
     }
 }

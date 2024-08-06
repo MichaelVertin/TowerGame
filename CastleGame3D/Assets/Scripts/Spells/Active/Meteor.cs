@@ -19,7 +19,7 @@ public class Meteor : SpellActive
     {
         foreach( Warrior warrior in _range.warriors )
         {
-            if( warrior != null && warrior.owner != this.owner)
+            if( warrior != null && Methods.HasEnemy(this, warrior))
             {
                 warrior.Health -= Damage;
             }

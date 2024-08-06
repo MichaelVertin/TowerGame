@@ -16,9 +16,4 @@ public class SpellActive : SpellSingle
             Debug.LogError("SpellActive does not have a SpellRange component in its children");
         }
     }
-
-    public virtual void Init(Player owner)
-    {
-        this.owner = owner;
-    }
 }

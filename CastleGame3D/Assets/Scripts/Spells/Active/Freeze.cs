@@ -21,7 +21,7 @@ public class Freeze : SpellActive
     {
         foreach (Warrior warrior in _range.warriors)
         {
-            if (warrior != null && warrior.owner != this.owner)
+            if (warrior != null && Methods.HasEnemy(this, warrior))
             {
                 _affectedWarriors.Add(warrior);
                 Animator anim = warrior.GetComponent<Animator>();
