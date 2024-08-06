@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 5
-  owner: {fileID: 0}
   Damage: 75
   timeBeforeDamage: 0.9
 --- !u!1001 &7865014697218918627
@@ -342,7 +341,8 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[0].m_Value.m_Curve.Array.data[2].tangentMode
       value: 34
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2627797319515695679, guid: 6aeee1ac8b24a1e45baedae4f3b12b52, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

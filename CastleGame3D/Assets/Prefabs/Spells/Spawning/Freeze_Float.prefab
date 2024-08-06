@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 0
-  owner: {fileID: 0}
   duration: 0.6
   spellToSpawn: {fileID: 5180792859464745469, guid: 6ca4886675a046a4ab5c07922be267bc, type: 3}
 --- !u!1001 &5031850347839475156
@@ -105,7 +104,8 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 31d0dcc6f2dd4e4408d18036a2c93862, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5432563931845424159, guid: 012a39d402a562b4682fbe2028cc1274, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
