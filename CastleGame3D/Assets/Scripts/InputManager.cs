@@ -141,4 +141,14 @@ public class InputManager : MonoBehaviour
 
         return result;
     }
+
+    public static bool WasKeyPressedThisFrame(string value)
+    {
+        return Keyboard.current.FindKeyOnCurrentKeyboardLayout(value).wasPressedThisFrame;
+    }
+
+    public static bool IsKeyPressed(string value)
+    {
+        return Keyboard.current.FindKeyOnCurrentKeyboardLayout(value).isPressed;
+    }
 }

@@ -807,16 +807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717a95b2861b2c0488f7d570dd4bb1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effects:
-  - {fileID: 8564608024345558901, guid: 2de189711a1362f4db7e802801b90eac, type: 3}
-  - {fileID: 6891901344690138277, guid: 6bfc90e54a8ccce408a3b2b0e42b149f, type: 3}
-  - {fileID: 2040460775051823323, guid: e87c97282711c884ba583a33670a1e78, type: 3}
-  - {fileID: 7883966873594125846, guid: 6aeee1ac8b24a1e45baedae4f3b12b52, type: 3}
-  - {fileID: 7193163566217465855, guid: aff4be9b49fb9e24abf3be6c0820b719, type: 3}
-  - {fileID: 863696848358669098, guid: 59f87adf2f772c4469010e8dfb9bddc1, type: 3}
-  - {fileID: 5945084301295132745, guid: a81ea82b97eed534083484077cef13cc, type: 3}
-  - {fileID: 2405776118969034995, guid: 012a39d402a562b4682fbe2028cc1274, type: 3}
-  keys: 0001000001010000020100000301000004010000050100000601000007010000
 --- !u!4 &1300705846
 Transform:
   m_ObjectHideFlags: 0
