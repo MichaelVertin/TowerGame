@@ -26,6 +26,7 @@ public class Freeze : SpellActive
                 _affectedWarriors.Add(warrior);
                 Animator anim = warrior.GetComponent<Animator>();
                 anim.speed *= speedMultiplier;
+                warrior.speed *= speedMultiplier;
             }
         }
     }
@@ -38,6 +39,7 @@ public class Freeze : SpellActive
             {
                 Animator anim = warrior.GetComponent<Animator>();
                 anim.speed /= speedMultiplier;
+                warrior.speed /= speedMultiplier;
             }
         }
         Destroy(this.gameObject);

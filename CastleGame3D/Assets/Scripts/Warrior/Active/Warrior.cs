@@ -18,6 +18,7 @@ public class Warrior : MonoBehaviour, IOwnable
 
     [SerializeField] public int Cost;
     [SerializeField] protected float _damage;
+    [SerializeField] public float speed = 0f;
 
     private WarriorBody _body;
     protected WarriorRange _range;
@@ -32,7 +33,7 @@ public class Warrior : MonoBehaviour, IOwnable
      * Attacking -> Moving on exit with all enemies and base
      */
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         _animator = GetComponent<Animator>();
         _currentHealth = _maxHealth;
@@ -56,6 +57,14 @@ public class Warrior : MonoBehaviour, IOwnable
             Debug.LogError("Warrior.Init not called before Warrior.Start");
         }
         OnAvailable();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        if( speed != 0.0f && _animator.runtimeAnimatorController == _moveController )
+        {
+            this.transform.position += Owner.direction * speed;
+        }
     }
 
     #region DamagableClass
@@ -136,6 +145,7 @@ public class Warrior : MonoBehaviour, IOwnable
         yield return new WaitForSeconds(0f);
     }
     #endregion Death
+
     public void AttackEnemy(Warrior warrior)
     {
         warrior.Health -= _damage;

@@ -12,6 +12,7 @@ public class Prefabs : MonoBehaviour
     [SerializeField] public Warrior WarriorShield;
     [SerializeField] public Warrior WarriorSword;
     [SerializeField] public Warrior WarriorSpear;
+    [SerializeField] public Warrior WarriorDragon;
 
     [SerializeField] public Meteor Meteor;
     [SerializeField] public Haste Haste;

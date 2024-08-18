@@ -29,6 +29,9 @@ public class AIPlayer_Wave : AIPlayer
 
             Wave wave = gameObject.AddComponent<Wave>();
             wave.Init(this);
+            // temp
+            wave.AddRepeatingSegment(Prefabs.instance.WarriorDragon, null, 1, spawnDelay, 5f);
+            // temp end
             wave.AddRepeatingSegment(Prefabs.instance.WarriorShield, null, numEnemies, spawnDelay, initialDelay);
             wave.AddRepeatingSegment(GetRandomSpell(), GetRandomPath(), numSpells, spellDelay, initialDelay);
             wave.SetTimeBaseFromLastSpawn(spawnDelay);
@@ -40,6 +43,8 @@ public class AIPlayer_Wave : AIPlayer
             wave.AddRepeatingSegment(Prefabs.instance.WarriorSpear,  null, numEnemies, spawnDelay);
             wave.AddRepeatingSegment(GetRandomSpell(), GetRandomPath(), numSpells, spellDelay);
             wave.SetTimeBaseFromLastSpawn(spawnDelay);
+
+            
             
             _waves.Add(wave);
         }
