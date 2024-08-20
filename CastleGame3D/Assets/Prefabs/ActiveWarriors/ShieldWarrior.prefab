@@ -1172,7 +1172,7 @@ Animator:
   m_GameObject: {fileID: 4603248925305556510}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9035850883732af4daf57c888e1fefce, type: 3}
-  m_Controller: {fileID: 9100000, guid: 92efc5a6051953a4db45a52f72df44cc, type: 2}
+  m_Controller: {fileID: 9100000, guid: bc76af0d5ade37747bd4f4a7a41637b8, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1195,13 +1195,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f68ec01909e70214ba7ef1ea3b6dd012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   _attackController: {fileID: 9100000, guid: 2ebd3ccad747a0c4fa877e340cfdac39, type: 2}
   _moveController: {fileID: 9100000, guid: bc76af0d5ade37747bd4f4a7a41637b8, type: 2}
   _idleController: {fileID: 9100000, guid: 92efc5a6051953a4db45a52f72df44cc, type: 2}
   _deathController: {fileID: 9100000, guid: cf46434a751dc3f409cc9baba1a8e386, type: 2}
   Cost: 3
   _damage: 5
+  speed: 0
   _maxHealth: 100
 --- !u!1 &4608820264059046377
 GameObject:
