@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour, IOwnable
 {
-    [SerializeField] private bool isAirborne = false;
-    [SerializeField]  private Warrior __owner;
+    private bool isAirborne = false;
+    private Warrior __owner;
     private Vector3 __dir;
-    [SerializeField] private ProjectileRange __range;
+    private WarriorRange RangeOfEffect;
+    [SerializeField] protected WarriorRange _range;
 
     public Player Owner { get; set; }
 
@@ -17,7 +18,11 @@ public class Projectile : MonoBehaviour, IOwnable
     {
         ProjectileExit projectileExit = GetComponentInChildren<ProjectileExit>();
         projectileExit.Init(this);
-        __range = GetComponentInChildren<ProjectileRange>();
+    }
+
+    public void Init(WarriorRange RangeOfEffect)
+    {
+        this.RangeOfEffect = RangeOfEffect;
     }
 
     public void launch(Warrior owner, Vector3 direction)
@@ -56,24 +61,15 @@ public class Projectile : MonoBehaviour, IOwnable
     {
         if( isAirborne )
         {
-            foreach( Warrior warrior in __range.warriors )
+            if( _range.GetEnemyWarrior(__owner, out Warrior warriorTest ) )
             {
-                if( Methods.HasEnemy(this, warrior) )
-                {
-                    __owner.AttackEnemy(warrior);
-                    Destroy(this.gameObject);
-                    return;
-                }
+                __owner.AttackEnemy(warriorTest);
+                Destroy(this.gameObject);
             }
-
-            foreach (Base enemyBase in __range.bases)
+            else if (_range.GetEnemyBase(__owner, out Base enemyBaseTest))
             {
-                if( Methods.HasEnemy(this, enemyBase) )
-                {
-                    __owner.AttackBase( enemyBase );
-                    Destroy(this.gameObject);
-                    return;
-                }
+                __owner.AttackBase(enemyBaseTest);
+                Destroy(this.gameObject);
             }
         }
     }
@@ -85,15 +81,9 @@ public class Projectile : MonoBehaviour, IOwnable
             return;
         }
 
-        // Destroy projectile on exit range
-        WarriorRange range = other.GetComponent<WarriorRange>();
-        if (range != null)
+        if ( other.gameObject == RangeOfEffect.gameObject )
         {
-            Warrior warrior = range.GetComponentInParent<Warrior>();
-            if (warrior == this.__owner)
-            {
-                Invoke("CallDestroy", .1f);
-            }
+            Destroy(this.gameObject);
         }
     }
 

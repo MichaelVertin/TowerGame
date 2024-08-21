@@ -4,13 +4,19 @@ using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IOwnable
 {
     [SerializeField] public List<Transform> _spawnTransforms;
     [SerializeField] public Vector3 direction = new Vector3(0,0,1);
 
     public List<Warrior> Warriors = new List<Warrior>();
     public List<Spell> Spells = new List<Spell>();
+
+    public Player Owner
+    {
+        get { return this; }
+        set { Debug.LogError("Attempted to change Player's owner"); }
+    }
 
     public virtual void Awake()
     {
