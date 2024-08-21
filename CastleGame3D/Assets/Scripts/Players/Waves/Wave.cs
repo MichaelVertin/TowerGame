@@ -99,8 +99,8 @@ public class Wave : MonoBehaviour
                 owner.Spawn(waveSegment.Spell, waveSegment.Path);
             }
 
-            yield return new WaitForSeconds(waveSegment.Spacing);
             remainingSpawns -= 1;
+            yield return new WaitForSeconds(waveSegment.Spacing);
         }
 
         if( remainingSpawns <= 0 )

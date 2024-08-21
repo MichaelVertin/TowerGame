@@ -19,23 +19,24 @@ public class AIPlayer_Wave : AIPlayer
 
         for (int i = 1; i < 1000; i++)
         {
-            float totalTime = 10f;
+            float totalSegmentTime = 10f;
+            float totalWaveTime = totalSegmentTime * 3f;
             int numEnemies = i;
             int numSpells = numEnemies * 1 / 2;
+            int numDragons = i / 6;
 
-            float spawnDelay = totalTime / numEnemies + 1;
-            float spellDelay = totalTime / numSpells + 1;
+            float spawnDelay = totalSegmentTime / numEnemies + 1;
+            float spellDelay = totalSegmentTime / numSpells + 1;
+            float dragonDelay =  totalWaveTime / numDragons + 1;
             float initialDelay = 5f;
 
             Wave wave = gameObject.AddComponent<Wave>();
             wave.Init(this);
-            // temp
-            wave.AddRepeatingSegment(Prefabs.instance.WarriorDragon, null, 1, spawnDelay, 5f);
-            // temp end
+
             wave.AddRepeatingSegment(Prefabs.instance.WarriorShield, null, numEnemies, spawnDelay, initialDelay);
             wave.AddRepeatingSegment(GetRandomSpell(), GetRandomPath(), numSpells, spellDelay, initialDelay);
             wave.SetTimeBaseFromLastSpawn(spawnDelay);
-            
+
             wave.AddRepeatingSegment(Prefabs.instance.WarriorSword, null, numEnemies, spawnDelay);
             wave.AddRepeatingSegment(GetRandomSpell(), GetRandomPath(), numSpells, spellDelay);
             wave.SetTimeBaseFromLastSpawn(spawnDelay);
@@ -44,8 +45,10 @@ public class AIPlayer_Wave : AIPlayer
             wave.AddRepeatingSegment(GetRandomSpell(), GetRandomPath(), numSpells, spellDelay);
             wave.SetTimeBaseFromLastSpawn(spawnDelay);
 
-            
-            
+            wave.SetTimeBase(0.0f);
+            wave.AddRepeatingSegment(Prefabs.instance.WarriorDragon, null, numDragons, dragonDelay, dragonDelay);
+
+
             _waves.Add(wave);
         }
 
@@ -65,7 +68,7 @@ public class AIPlayer_Wave : AIPlayer
             {
                 // increase user's maximum money, and give them full money
                 UserPlayer user = UserPlayers[0];
-                user.MoneyCap += 2;
+                user.MoneyCap += 4;
                 user._incomeRate *= 1.10f;
                 //user.Money = user.MoneyCap;
 
