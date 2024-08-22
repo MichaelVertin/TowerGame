@@ -11,6 +11,10 @@ public class Warrior : MonoBehaviour, IOwnable
 
     private Animator _animator;
 
+    protected WarriorBody _body;
+    [SerializeField] protected WarriorRange RangeOfVision;
+    [SerializeField] protected WarriorRange RangeOfEffect;
+
     [SerializeField] private RuntimeAnimatorController _attackController;
     [SerializeField] private RuntimeAnimatorController _moveController;
     [SerializeField] private RuntimeAnimatorController _idleController;
@@ -20,26 +24,12 @@ public class Warrior : MonoBehaviour, IOwnable
     [SerializeField] protected float _damage;
     [SerializeField] public float speed = 0f;
 
-    private WarriorBody _body;
-    protected WarriorRange _range;
-
-    // States:
-    /*
-     * Moving - moving forward
-     * Attacking - attacking enemy or enemy base
-     * Dying - displaying death animations
-     * 
-     * Moving -> Attacking on collision with enemy of enemy base
-     * Attacking -> Moving on exit with all enemies and base
-     */
-
     protected virtual void Awake()
     {
         _animator = GetComponent<Animator>();
         _currentHealth = _maxHealth;
 
         _body = GetComponentInChildren<WarriorBody>();
-        _range = GetComponentInChildren<WarriorRange>();
     }
 
     public void Init(Player owner)
@@ -86,36 +76,16 @@ public class Warrior : MonoBehaviour, IOwnable
 
     public void OnAvailable()
     {
-        Base enemyBase = null;
-        Warrior enemyWarrior = null;
-        foreach (Warrior warrior in _range.warriors)
-        {
-            if (warrior != null && Methods.HasEnemy(this, warrior))
-            {
-                enemyWarrior = warrior;
-                break;
-            }
-        }
-
-        foreach (Base otherBase in _range.bases)
-        {
-            if( Methods.HasEnemy(this, otherBase) )
-            {
-                enemyBase = otherBase;
-                break;
-            }
-        }
-
         // this Warrior has died
         if (Health <= 0 || _animator.runtimeAnimatorController == _deathController)
         {
             // skip if no health
         }
         // Enemy in range -> attack enemy
-        else if (enemyWarrior != null || enemyBase != null)
+        else if( GetActiveAnimation(out RuntimeAnimatorController attackCTRL))
         {
             _animator.runtimeAnimatorController = _moveController;
-            _animator.runtimeAnimatorController = _attackController;
+            _animator.runtimeAnimatorController = attackCTRL;
         }
         // not dead and no enemies -> move forward
         else
@@ -159,34 +129,12 @@ public class Warrior : MonoBehaviour, IOwnable
 
     public virtual void OnAttack()
     {
-        List<Warrior> warriors = _range.warriors;
-        Base enemyBase = null;
-        Warrior enemyWarrior = null;
-        foreach (Warrior warrior in warriors)
-        {
-            if (warrior != null && Methods.HasEnemy(this,warrior))
-            {
-                enemyWarrior = warrior;
-                break;
-            }
-        }
-
-        foreach (Base otherBase in _range.bases)
-        {
-            if (Methods.HasEnemy(this,otherBase))
-            {
-                enemyBase = otherBase;
-                break;
-            }
-        }
-
-        // Enemy warrior in range -> attack enemy
-        if (enemyWarrior != null)
+        if( RangeOfEffect.GetEnemyWarrior(this, out Warrior enemyWarrior) )
         {
             AttackEnemy(enemyWarrior);
         }
-        // Enemy base in range -> attack base
-        else if (enemyBase != null)
+
+        else if (RangeOfEffect.GetEnemyBase(this, out Base enemyBase))
         {
             AttackBase(enemyBase);
         }
@@ -195,5 +143,16 @@ public class Warrior : MonoBehaviour, IOwnable
     public virtual void OnAttackEnd()
     {
         OnAvailable();
+    }
+
+    public virtual bool GetActiveAnimation(out RuntimeAnimatorController EffectCTRL)
+    {
+        if( RangeOfVision.GetEnemyWarrior(this, out _ ) || RangeOfVision.GetEnemyBase(this, out _ ) )
+        {
+            EffectCTRL = _attackController;
+            return true;
+        }
+        EffectCTRL = null;
+        return false;
     }
 }

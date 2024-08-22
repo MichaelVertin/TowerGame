@@ -62,6 +62,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3267902456043701688}
+  - {fileID: 922560013442883304}
   - {fileID: 3179309672335784265}
   m_Father: {fileID: 9035699570072738821}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -223,6 +224,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8486464401960521955}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &888174033950983712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 922560013442883304}
+  - component: {fileID: 3032887472406546098}
+  - component: {fileID: 3787568296997729384}
+  - component: {fileID: 7261841192698140651}
+  m_Layer: 0
+  m_Name: RangeOfEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &922560013442883304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888174033950983712}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 1.125}
+  m_LocalScale: {x: 1, y: 2, z: 2.25}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7587193820147737369}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3032887472406546098
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888174033950983712}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3787568296997729384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888174033950983712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786cf9157514b8d469e76544bf4e0ddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &7261841192698140651
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888174033950983712}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1230829285282224755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,7 +1752,7 @@ GameObject:
   - component: {fileID: 169069864198573845}
   - component: {fileID: 5456746212991795742}
   m_Layer: 0
-  m_Name: Range
+  m_Name: RangeOfVision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1711,8 +1806,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786cf9157514b8d469e76544bf4e0ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warriors: []
-  bases: []
 --- !u!54 &5456746212991795742
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2255,13 +2348,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f68ec01909e70214ba7ef1ea3b6dd012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
+  RangeOfVision: {fileID: 169069864198573845}
+  RangeOfEffect: {fileID: 3787568296997729384}
   _attackController: {fileID: 9100000, guid: 2ebd3ccad747a0c4fa877e340cfdac39, type: 2}
   _moveController: {fileID: 9100000, guid: bc76af0d5ade37747bd4f4a7a41637b8, type: 2}
   _idleController: {fileID: 9100000, guid: 92efc5a6051953a4db45a52f72df44cc, type: 2}
   _deathController: {fileID: 9100000, guid: cf46434a751dc3f409cc9baba1a8e386, type: 2}
   Cost: 5
   _damage: 35
+  speed: 0
   _maxHealth: 25
 --- !u!1 &8257343392495241501
 GameObject:

@@ -1392,6 +1392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8484b9ef19703bf4d9b3e91807562e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RangeOfVision: {fileID: 2089897993153593753}
+  RangeOfEffect: {fileID: 5118414135735041230}
   _attackController: {fileID: 9100000, guid: 2fd49a80ec350aa4f89bdbd7aede78a3, type: 2}
   _moveController: {fileID: 9100000, guid: 9430060ecef472f43b4681b54d7e3d60, type: 2}
   _idleController: {fileID: 9100000, guid: e5d20db4fd54808409bb2c94ae4a84fb, type: 2}
@@ -2565,6 +2567,100 @@ Transform:
   - {fileID: 1405732705089567285}
   m_Father: {fileID: 1152312002730246349}
   m_LocalEulerAnglesHint: {x: -1.1918482, y: 1.231254, z: 87.65763}
+--- !u!1 &5022542314860243990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6121085119222312169}
+  - component: {fileID: 8321307738945783657}
+  - component: {fileID: 2419642814566741806}
+  - component: {fileID: 5118414135735041230}
+  m_Layer: 0
+  m_Name: RangeOfEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6121085119222312169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5022542314860243990}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 11.25}
+  m_LocalScale: {x: 2, y: 10, z: 12.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422498155538298245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &8321307738945783657
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5022542314860243990}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2419642814566741806
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5022542314860243990}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5118414135735041230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5022542314860243990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786cf9157514b8d469e76544bf4e0ddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5031554532592538990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2736,7 +2832,7 @@ GameObject:
   - component: {fileID: 2155769925496772717}
   - component: {fileID: 2089897993153593753}
   m_Layer: 0
-  m_Name: Range
+  m_Name: RangeOfVision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2817,8 +2913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786cf9157514b8d469e76544bf4e0ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warriors: []
-  bases: []
 --- !u!1 &5294815447843412067
 GameObject:
   m_ObjectHideFlags: 0
@@ -3645,6 +3739,7 @@ Transform:
   m_Children:
   - {fileID: 4601498954699446317}
   - {fileID: 7316266806156585852}
+  - {fileID: 6121085119222312169}
   m_Father: {fileID: 4673232214022497275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7691108709083735161

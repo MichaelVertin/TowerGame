@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3940290004299950125}
   - component: {fileID: 4591917641765843366}
   - component: {fileID: 7006602037678834441}
-  - component: {fileID: 8634658766524941775}
+  - component: {fileID: 7448388545258016871}
   m_Layer: 0
   m_Name: Pole
   m_TagString: Untagged
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092f9e6211198f84e98e89e1ccc19ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8634658766524941775
+--- !u!114 &7448388545258016871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,11 +158,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2423648333913058378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02a7991fa4bd3cc4fa96e740633d3987, type: 3}
+  m_Script: {fileID: 11500000, guid: 786cf9157514b8d469e76544bf4e0ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warriors: []
-  bases: []
 --- !u!1 &9145266037974263194
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +206,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a062a809da5f54f8fbcbbc96943a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAirborne: 0
-  __owner: {fileID: 0}
-  __range: {fileID: 0}
+  _range: {fileID: 7448388545258016871}

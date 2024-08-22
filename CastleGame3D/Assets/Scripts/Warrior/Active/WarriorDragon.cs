@@ -31,21 +31,14 @@ public class WarriorDragon : Warrior
 
     public override void OnAttack()
     {
-        List<Warrior> warriors = _range.warriors;
-        foreach (Warrior warrior in warriors)
+        foreach (Warrior warrior in RangeOfEffect.GetEnemyWarriors(this) )
         {
-            if (warrior != null && Methods.HasEnemy(this, warrior))
-            {
-                AttackEnemy(warrior);
-            }
+            AttackEnemy(warrior);
         }
 
-        foreach (Base otherBase in _range.bases)
+        if( RangeOfEffect.GetEnemyBase(this, out Base enemyBase ) )
         {
-            if (Methods.HasEnemy(this, otherBase))
-            {
-                AttackBase(otherBase);
-            }
+            AttackBase(enemyBase);
         }
     }
 }
