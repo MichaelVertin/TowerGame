@@ -3661,6 +3661,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936789027751345151, guid: 2643116a00d477248bb003d4c29e1609, type: 3}
+      propertyPath: PATH_HEIGHT
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936789027751345151, guid: 2643116a00d477248bb003d4c29e1609, type: 3}
       propertyPath: paths.Array.data[0]
       value: 
       objectReference: {fileID: 1331393116}

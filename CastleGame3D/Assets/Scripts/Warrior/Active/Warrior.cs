@@ -12,8 +12,8 @@ public class Warrior : MonoBehaviour, IOwnable
     private Animator _animator;
 
     protected WarriorBody _body;
-    [SerializeField] protected WarriorRange RangeOfVision;
-    [SerializeField] protected WarriorRange RangeOfEffect;
+    [SerializeField] protected Range RangeOfVision;
+    [SerializeField] protected Range RangeOfEffect;
 
     [SerializeField] private RuntimeAnimatorController _attackController;
     [SerializeField] private RuntimeAnimatorController _moveController;

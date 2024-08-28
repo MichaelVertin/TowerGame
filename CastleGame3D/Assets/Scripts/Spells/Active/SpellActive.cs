@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class SpellActive : SpellSingle
 {
-    protected SpellRange _range;
+    [SerializeField] protected Range RangeOfEffect;
 
     public override void Awake()
     {
         base.Awake();
-        _range = GetComponentInChildren<SpellRange>();
-        if( _range == null )
+        if( RangeOfEffect == null )
         {
-            Debug.LogError("SpellActive does not have a SpellRange component in its children");
+            Debug.LogError("RangeOfEffect for SpellActive was not assigned");
         }
     }
 }
