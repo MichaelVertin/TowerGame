@@ -50,4 +50,4 @@ MonoBehaviour:
   paths:
   - {fileID: 0}
   - {fileID: 0}
-  PATH_HEIGHT: 1
+  PATH_HEIGHT: 0

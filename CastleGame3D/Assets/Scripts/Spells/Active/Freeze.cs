@@ -19,7 +19,7 @@ public class Freeze : SpellActive
 
     public void Apply()
     {
-        foreach (Warrior warrior in _range.GetEnemyWarriors(this))
+        foreach (Warrior warrior in RangeOfEffect.GetEnemyWarriors(this))
         {
             _affectedWarriors.Add(warrior);
             Animator anim = warrior.GetComponent<Animator>();

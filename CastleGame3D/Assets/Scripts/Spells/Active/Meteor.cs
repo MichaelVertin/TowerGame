@@ -17,7 +17,7 @@ public class Meteor : SpellActive
 
     public void DamageAllEnemiesInRange()
     {
-        foreach( Warrior warrior in _range.GetEnemyWarriors(this) )
+        foreach( Warrior warrior in RangeOfEffect.GetEnemyWarriors(this) )
         {
             warrior.Health -= Damage;
         }

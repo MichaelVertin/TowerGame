@@ -4,12 +4,70 @@ using System.Security;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WarriorRange : MonoBehaviour
+public class Range : MonoBehaviour
 {
     protected List<Warrior> warriors = new List<Warrior>();
     protected List<Base> bases = new List<Base>();
 
+    protected BoxCollider rangeCollider;
 
+    public enum AccessType
+    {
+        GROUND, 
+        FLYING, 
+        GROUND_AND_FLYING
+    }
+
+    protected virtual void Awake()
+    {
+        SetCollider();
+    }
+
+    #region AccessType
+    [SerializeField] protected AccessType accessType = AccessType.GROUND;
+
+    public virtual void SetCollider()
+    {
+        rangeCollider = GetComponent<BoxCollider>();
+        if( rangeCollider == null )
+        {
+            Debug.LogError("Unable to identify Box Collider for Range");
+        }
+        Vector3 colliderCenter = rangeCollider.center;
+        Vector3 colliderSize = rangeCollider.size;
+
+        // x is always the same
+        // y is dependent on AccessType
+        // z is defined by user
+        colliderCenter.x = 0;
+        colliderSize.x = 8;
+
+        if (accessType == AccessType.FLYING)
+        {
+            colliderCenter.y = 6 + 1 + 3;
+            colliderSize.y = 6;
+        }
+        else if (accessType == AccessType.GROUND_AND_FLYING)
+        {
+            colliderCenter.y = 6 + 1/2f;
+            colliderSize.y = 6 * 2 + 1;
+        }
+        else if( accessType == AccessType.GROUND)
+        {
+            colliderCenter.y = 3;
+            colliderSize.y = 6;
+        }
+        else
+        {
+            Debug.LogError("Unrecognized AccessType");
+        }
+
+        rangeCollider.center = colliderCenter;
+        rangeCollider.size = colliderSize;
+    }
+    #endregion
+
+    #region WarriorIdentification
     protected void OnTriggerEnter(Collider collider)
     {
         WarriorBody otherBody = collider.GetComponent<WarriorBody>();
@@ -49,6 +107,7 @@ public class WarriorRange : MonoBehaviour
             bases.Remove(otherBase);
         }
     }
+    #endregion
 
     #region Warrior Access
     public bool GetEnemyWarrior(IOwnable reference, out Warrior enemy)

@@ -22,7 +22,7 @@ public class Haste : SpellActive
 
     public void Apply()
     {
-        foreach( Warrior warrior in _range.GetAllyWarriors(this) )
+        foreach( Warrior warrior in RangeOfEffect.GetAllyWarriors(this) )
         {
             _affectedWarriors.Add(warrior);
             Animator anim = warrior.GetComponent<Animator>();

@@ -830,8 +830,8 @@ Transform:
   m_GameObject: {fileID: 3553276054432113039}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 5.25}
-  m_LocalScale: {x: 1, y: 2, z: 10.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7587193820147737369}
@@ -855,8 +855,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 6, z: 31.5}
+  m_Center: {x: 0, y: 3, z: 15.75}
 --- !u!114 &601660155339622466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,6 +869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786cf9157514b8d469e76544bf4e0ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accessType: 0
 --- !u!54 &3288385260869867804
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1210,8 +1211,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 9035699570072738821}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1767,8 +1768,8 @@ Transform:
   m_GameObject: {fileID: 6787207009003483152}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 5}
-  m_LocalScale: {x: 1, y: 2, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7587193820147737369}
@@ -1792,8 +1793,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 6, z: 30}
+  m_Center: {x: 0, y: 3, z: 15}
 --- !u!114 &169069864198573845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1806,6 +1807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786cf9157514b8d469e76544bf4e0ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accessType: 0
 --- !u!54 &5456746212991795742
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1924,8 +1926,8 @@ Transform:
   m_GameObject: {fileID: 7179156198744181670}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7587193820147737369}
@@ -1942,6 +1944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961e6d294b78ea14ba9ca165569520bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accessType: 0
 --- !u!54 &7312205511724979049
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1988,8 +1991,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 6, z: 1.5}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &7198181947382390911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,8 +2113,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1027166764524528131}
   m_Father: {fileID: 9035699570072738821}
@@ -2307,7 +2310,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 34.4375, y: 1, z: -5.25}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6237669008311058757}
@@ -2356,7 +2359,7 @@ MonoBehaviour:
   _deathController: {fileID: 9100000, guid: cf46434a751dc3f409cc9baba1a8e386, type: 2}
   Cost: 8
   _damage: 20
-  speed: 0
+  speed: 0.075
   _maxHealth: 30
   _launchDirection: {x: 1, y: 0, z: 0}
 --- !u!1 &8257343392495241501
@@ -2606,7 +2609,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spear
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2060974482267968250, guid: dc75ba51bf672ed4c8563e4a7667b208, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
