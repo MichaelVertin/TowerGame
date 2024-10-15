@@ -111,8 +111,33 @@ public class SpawnManager : MonoBehaviour
 
         return spawnedSpell;
     }
+
+    public SpellStandard Spawn(SpellStandard spellPrefab, SPAWN_CONTROL spawnControl, Player owner, Path path = null, float pathProgression = 0.0f)
+    {
+        // create spell
+        //SpellActive spawnedSpell = Instantiate<SpellActive>(spellPrefab);
+        SpellStandard spawnedSpell = spellPrefab;
+
+        // check able to identify the spawn transform and the owner approves
+        if (UpdateTransform(spawnControl, spawnedSpell.transform, owner, path, pathProgression) &&
+            owner.VerifySpawn(spawnedSpell))
+        {
+            // add spell to owner's spells
+            spellPrefab.Cast();
+            owner.Spells.Add(spawnedSpell);
+        }
+        // if the transform cannot be found or the owner didn't approve, destroy the spell
+        else
+        {
+            Destroy(spawnedSpell.gameObject);
+            spawnedSpell = null;
+        }
+
+        return spawnedSpell;
+    }
     #endregion
 
+    #region Transform
     // updates transform parameter using spawnControl
     //  - FROM_CURSOR: sets at the point of the cursor (path/distFromBase not used)
     //  - FROM_BASE: sets at the base, distFromBase is the distance away from the base (0-1)
@@ -162,6 +187,7 @@ public class SpawnManager : MonoBehaviour
 
         return false;
     }
+    #endregion
 
 
     // checks if player can spawn from the path

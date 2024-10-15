@@ -62,11 +62,8 @@ public class UserPlayer : Player
 
     public void InitializeSpellGeneration(SpellFloat spellFloatPrefab)
     {
-        if( timer.Time <= 0.0f )
-        {
-            SpellFloat spell = Instantiate<SpellFloat>(spellFloatPrefab);
-            spell.Init(this);
-        }
+        SpellFloat spell = Instantiate<SpellFloat>(spellFloatPrefab);
+        spell.Init(this);
     }
 
     public override bool VerifySpawn(Warrior warrior)
@@ -86,7 +83,7 @@ public class UserPlayer : Player
     {
         int futureMoney = Money - spell.Cost;
 
-        if (futureMoney >= 0)
+        if (timer.Time <= 0.0f && futureMoney >= 0)
         {
             Money = futureMoney;
             timer.Time += _spellDelay;

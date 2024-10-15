@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellFloat : SpellPartial
+public class SpellFloat : Spell
 {
     [SerializeField] private SpellActive spellToSpawn;
-
-    public override void Update()
+    [SerializeField] float duration = 1.25f;
+    public override void Start()
     {
+        VisualPartial(duration);
+        base.Start();
+
         // must be initialized immidiately
         if (Owner == null)
         {
             Destroy(this.gameObject);
             Debug.LogError("SpellFloat Not Initialized");
         }
+    }
 
+    public override void Update()
+    {
         /* 
         // Removed due to need to view spells indepdently from their owner
         // Also would need to know orientation of the Player's spawn

@@ -11,14 +11,32 @@ public class Spell : MonoBehaviour, IOwnable
     protected VisualEffect _effect = null;
     protected PlayDecalVFX.PlayVFX VFX = null;
     protected Collider _collider = null;
+
+    // states
     protected bool VisualInitialized = false;
-    protected bool OnVisualEndCalled = false;
+    private float _timeOfInitialization = 0.0f;
+    /*
+     * Before VisualInit():
+     * - VisualInitialized=false
+     * 
+     * After VisualInit():
+     * - VisualInitialized=true
+     * 
+     * After OnVisualEnd() / VisualReset():
+     * - resets to "Before VisualInit()"
+     */
 
     public Player Owner { get; set; }
 
     public VisualEffect VisualEffect
     {
         get { return _effect; }
+    }
+
+
+    public virtual void Init(Player owner)
+    {
+        this.Owner = owner;
     }
 
     public virtual void Awake()
@@ -28,6 +46,7 @@ public class Spell : MonoBehaviour, IOwnable
         {
             Debug.LogError("Visual component was not attached to Spell's gameObject");
         }
+        VisualReset();
     }
 
     public virtual void Start()
@@ -37,7 +56,7 @@ public class Spell : MonoBehaviour, IOwnable
 
     public virtual void FixedUpdate()
     {
-        if(VFX == null && VisualInitialized && !OnVisualEndCalled)
+        if(VFX == null && VisualInitialized)
         {
             OnVisualEnd();
         }
@@ -48,20 +67,66 @@ public class Spell : MonoBehaviour, IOwnable
         
     }
 
+
+
+
     public void VisualInit()
     {
+        VisualReset();
         VFX = this.VisualEffect.gameObject.AddComponent<PlayDecalVFX.PlayVFX>();
         VisualInitialized = true;
-        OnVisualEndCalled = false;
+        _timeOfInitialization = Time.time;
     }
 
     public virtual void OnVisualEnd()
     {
-        OnVisualEndCalled = true;
+        if(VisualInitialized)
+        {
+            VisualReset();
+        }
     }
 
-    public virtual void Init(Player owner)
+    public virtual void VisualReset()
     {
-        this.Owner = owner;
+        if (VFX != null)
+        {
+            _effect.pause = false;
+            _effect.Reinit();
+            Destroy(VFX);
+            VFX = null;
+            VisualInitialized = false;
+        }
+    }
+
+    public virtual void VisualPause()
+    {
+        if(VFX != null)
+        {
+            VFX.Pause();
+        }
+    }
+
+    // Partial Visual Effect
+    public void VisualPartial(float pauseDelay = 0.0f)
+    {
+        VisualInit();
+        StartCoroutine(PauseAfterDelay_CR(pauseDelay));
+
+        IEnumerator PauseAfterDelay_CR(float pauseDelay = 0.0f)
+        {
+            // ensure the visual initialization has not changed during the delay
+            yield return new WaitForSeconds(pauseDelay);
+            float currentTime = Time.time;
+            if (currentTime >= _timeOfInitialization)
+            {
+                VisualPause();
+            }
+        }
+    }
+
+    // One Complete Visual Effect
+    public void VisualSingle()
+    {
+        VisualInit();
     }
 }
