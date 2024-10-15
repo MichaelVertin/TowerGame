@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Meteor : SpellActive
+public class Meteor_Active : SpellActive
 {
     [SerializeField] public int Damage;
     [SerializeField] protected float timeBeforeDamage;

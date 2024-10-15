@@ -68,7 +68,7 @@ public class Outline : MonoBehaviour
 
     private void Update()
     {
-        UpdateFrame();
+        //UpdateFrame();
     }
 
     private void UpdateFrame()

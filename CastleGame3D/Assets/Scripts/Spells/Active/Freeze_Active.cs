@@ -1,11 +1,8 @@
-using PlayDecalVFX;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
-
-public class Haste : SpellActive
+public class Freeze_Active : SpellActive
 {
     [SerializeField] protected float timeBeforeEffect;
     [SerializeField] protected float duration;
@@ -22,22 +19,24 @@ public class Haste : SpellActive
 
     public void Apply()
     {
-        foreach( Warrior warrior in RangeOfEffect.GetAllyWarriors(this) )
+        foreach (Warrior warrior in RangeOfEffect.GetEnemyWarriors(this))
         {
             _affectedWarriors.Add(warrior);
             Animator anim = warrior.GetComponent<Animator>();
             anim.speed *= speedMultiplier;
+            warrior.speed *= speedMultiplier;
         }
     }
 
     public void UnApply()
     {
-        foreach( Warrior warrior in _affectedWarriors )
+        foreach (Warrior warrior in _affectedWarriors)
         {
-            if(warrior != null )
+            if (warrior != null)
             {
                 Animator anim = warrior.GetComponent<Animator>();
                 anim.speed /= speedMultiplier;
+                warrior.speed /= speedMultiplier;
             }
         }
         Destroy(this.gameObject);

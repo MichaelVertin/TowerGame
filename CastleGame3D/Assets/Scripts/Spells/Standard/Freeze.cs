@@ -2,22 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Freeze : SpellActive
+public class Freeze : SpellStandard
 {
-    [SerializeField] protected float timeBeforeEffect;
-    [SerializeField] protected float duration;
     [SerializeField] protected float speedMultiplier;
 
-    protected List<Warrior> _affectedWarriors = new List<Warrior>();
-
-    public override void Init(Player owner)
-    {
-        base.Init(owner);
-        Invoke("Apply", timeBeforeEffect);
-        Invoke("UnApply", timeBeforeEffect + duration);
-    }
-
-    public void Apply()
+    protected override void OnApplicationStart()
     {
         foreach (Warrior warrior in RangeOfEffect.GetEnemyWarriors(this))
         {
@@ -28,7 +17,7 @@ public class Freeze : SpellActive
         }
     }
 
-    public void UnApply()
+    protected override void OnApplicationEnd()
     {
         foreach (Warrior warrior in _affectedWarriors)
         {
@@ -42,3 +31,4 @@ public class Freeze : SpellActive
         Destroy(this.gameObject);
     }
 }
+

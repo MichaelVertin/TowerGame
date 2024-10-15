@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class SpellActive : SpellSingle
+public class SpellActive : Spell
 {
     [SerializeField] protected Range RangeOfEffect;
 
@@ -14,5 +14,11 @@ public class SpellActive : SpellSingle
         {
             Debug.LogError("RangeOfEffect for SpellActive was not assigned");
         }
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        VisualSingle();
     }
 }

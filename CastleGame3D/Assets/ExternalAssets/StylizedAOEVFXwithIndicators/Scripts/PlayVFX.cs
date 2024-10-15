@@ -72,10 +72,17 @@ public class PlayVFX : MonoBehaviour
         //Delete Game Object after Playing
         if (effect.aliveParticleCount == 0 && effectPlayed && lifetime > anticipation + dissapation)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
         
         
     }
+
+    public void Pause(bool set=true)
+    {
+        effect.pause = set;
+    }
+
+
 }
 }

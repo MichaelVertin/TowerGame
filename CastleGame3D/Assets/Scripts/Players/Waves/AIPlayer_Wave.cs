@@ -77,7 +77,7 @@ public class AIPlayer_Wave : AIPlayer
                 {
                     for( float distFromBase = 0.01f; distFromBase <= .99f; distFromBase += .1f)
                     {
-                        Meteor meteor = Instantiate<Meteor>(Prefabs.instance.Meteor);
+                        Meteor_Active meteor = Instantiate<Meteor_Active>(Prefabs.instance.Meteor);
                         meteor.Init(this);
                         SpawnManager.instance.UpdateTransform(SpawnManager.SPAWN_CONTROL.FROM_BASE, meteor.transform, this, path, distFromBase);
                     }

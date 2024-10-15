@@ -14,12 +14,14 @@ public class Prefabs : MonoBehaviour
     [SerializeField] public Warrior WarriorSpear;
     [SerializeField] public Warrior WarriorDragon;
 
-    [SerializeField] public Meteor Meteor;
-    [SerializeField] public Haste Haste;
-    [SerializeField] public Freeze Freeze;
+    [SerializeField] public Meteor_Active Meteor;
+    [SerializeField] public Haste_Active Haste;
+    [SerializeField] public Freeze_Active Freeze;
 
     [SerializeField] public List<Warrior> Warriors;
     [SerializeField] public List<SpellActive> Spells;
+
+    [SerializeField] public Freeze freeze2;
 
     private void Awake()
     {
