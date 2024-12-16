@@ -5,11 +5,11 @@ Features:\
 ![image](https://github.com/user-attachments/assets/296abfb0-3e82-4487-befb-dfd7b449c1f1)
 
 Placement:\
-Drag and Drop warriors and spells
+Drag and Drop warriors and spells\
 ![image](https://github.com/user-attachments/assets/1c8bd4b1-f1ca-4601-993d-b5f7506882da)
 
 Winning:\
-Reduce the enemy base's health to win
+Reduce the enemy base's health to win\
 ![image](https://github.com/user-attachments/assets/d3f9a54b-c949-4628-beb1-248b7f93c4f1)
 
 
