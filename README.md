@@ -8,7 +8,8 @@ In unity, select project from disk
 select the /CastleGame3D folder
 In scenes, select CastleGame
 Press Play
-![image](https://github.com/user-attachments/assets/1201dae0-2670-4ba4-9735-a4a36efad184)
+![image](https://github.com/user-attachments/assets/3f92192c-1fb1-4da2-8d87-288f78dced84)
+
 
 
 # TowerGame
