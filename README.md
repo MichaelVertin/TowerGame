@@ -4,10 +4,10 @@ install unity [here](https://unity.com/games?utm_source=google&utm_medium=cpc&ut
 install Editor version 2022.3.33f1
 
 ## running the program
-In unity, select project from disk
-select the /CastleGame3D folder
-In scenes, select CastleGame
-Press Play
+In unity, select project from disk\
+select the /CastleGame3D folder\
+In scenes, select CastleGame\
+Press Play\
 ![image](https://github.com/user-attachments/assets/3f92192c-1fb1-4da2-8d87-288f78dced84)
 
 
