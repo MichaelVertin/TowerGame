@@ -11,7 +11,7 @@ public abstract class SpellStandard : Spell
 
     protected bool wasCast = false;
     protected List<Warrior> _affectedWarriors = new();
-    private Outline outline = null;
+    private Outline_TG outline = null;
 
     public override void Start()
     {
@@ -25,7 +25,7 @@ public abstract class SpellStandard : Spell
         {
             VisualPartial(precastDuration);
         }
-        outline = GetComponentInChildren<Outline>();
+        outline = GetComponentInChildren<Outline_TG>();
     }
 
     protected abstract void OnApplicationStart();

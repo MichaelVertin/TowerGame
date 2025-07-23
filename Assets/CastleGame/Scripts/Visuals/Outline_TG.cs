@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Outline : MonoBehaviour
+public class Outline_TG : MonoBehaviour
 {
     [SerializeField] GameObject rectPrefab;
 
