@@ -73,7 +73,7 @@ public class AIPlayer_Wave : AIPlayerCG
                 //user.Money = user.MoneyCap;
 
                 // destroy all existing warriors
-                foreach(Path path in _paths )
+                foreach(WarriorPath path in _paths )
                 {
                     for( float distFromBase = 0.01f; distFromBase <= .99f; distFromBase += .1f)
                     {
@@ -109,5 +109,12 @@ public class AIPlayer_Wave : AIPlayerCG
         }
 
         base.FixedUpdate();
+    }
+
+    [SerializeField] EndGameManager endGameManager;
+    public override void OnGameEnd(bool wonGame)
+    {
+        base.OnGameEnd(!wonGame);
+        endGameManager.OnGameEnd(!wonGame);
     }
 }

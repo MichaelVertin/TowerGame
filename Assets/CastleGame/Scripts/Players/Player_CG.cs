@@ -48,4 +48,8 @@ public class Player_CG : MonoBehaviour, IOwnable
         return true;
     }
 
+    public virtual void OnGameEnd(bool wonGame)
+    {
+
+    }
 }

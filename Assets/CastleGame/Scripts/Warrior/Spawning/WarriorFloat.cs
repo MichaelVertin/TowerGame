@@ -27,7 +27,7 @@ public class WarriorFloat : MonoBehaviour, IOwnable
         // place the object on button release
         if (InputManager.WasLeftMouseButtonReleased)
         {
-            bool foundPath = InputManager.GetObjectUnderMouse<Path>(out Path path);
+            bool foundPath = InputManager.GetObjectUnderMouse<WarriorPath>(out WarriorPath path);
             SpawnManager_CG.instance.Spawn(warriorToSpawn, SpawnManager_CG.SPAWN_CONTROL.FROM_BASE, Owner, path);
             Destroy(this.gameObject);
         }
@@ -36,7 +36,7 @@ public class WarriorFloat : MonoBehaviour, IOwnable
     protected void UpdatePosition()
     {
         // if selected on the path, set to 10% away from the owner's base
-        bool foundPath = InputManager.GetObjectUnderMouse<Path>(out Path path);
+        bool foundPath = InputManager.GetObjectUnderMouse<WarriorPath>(out WarriorPath path);
         if (foundPath)
         {
             SpawnManager_CG.instance.UpdateTransform(SpawnManager_CG.SPAWN_CONTROL.FROM_BASE, this.transform, Owner, path, .1f);

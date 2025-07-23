@@ -9,6 +9,7 @@ public class Base : MonoBehaviour, IOwnable
 {
     [SerializeField] public Player_CG Owner { get; set; }
     [SerializeField] private Slider _slider;
+    [SerializeField] private Player_CG _playerOwner;
 
     #region DamagableClass
     [SerializeField] protected float _maxHealth;
@@ -30,6 +31,7 @@ public class Base : MonoBehaviour, IOwnable
     protected void Awake()
     {
         _currentHealth = _maxHealth;
+        Owner = _playerOwner;
     }
 
     protected void Update()
@@ -41,6 +43,6 @@ public class Base : MonoBehaviour, IOwnable
 
     public void OnDeath()
     {
-        Debug.Log("Base Destroyed");
+        Owner.OnGameEnd(wonGame: false);
     }
 }

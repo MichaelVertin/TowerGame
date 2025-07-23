@@ -1,4 +1,3 @@
-using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,11 +24,11 @@ public class SpawnManager_CG : MonoBehaviour
     }
 
     // stores dictionary of all Transforms where Players can interact with the path
-    public Dictionary<Player_CG, Dictionary<Path, Transform>> BaseTransforms = new Dictionary<Player_CG, Dictionary<Path, Transform>>();
+    public Dictionary<Player_CG, Dictionary<WarriorPath, Transform>> BaseTransforms = new Dictionary<Player_CG, Dictionary<WarriorPath, Transform>>();
 
     // list of all players and paths
     [SerializeField] private List<Player_CG> players = new List<Player_CG>();
-    [SerializeField] private List<Path> paths = new List<Path>();
+    [SerializeField] private List<WarriorPath> paths = new List<WarriorPath>();
     [SerializeField] public float PATH_HEIGHT = 1.0f;
 
     public static SpawnManager_CG instance;
@@ -48,8 +47,8 @@ public class SpawnManager_CG : MonoBehaviour
         // initialize BaseTransforms
         foreach( Player_CG player in players )
         {
-            BaseTransforms[player] = new Dictionary<Path, Transform>();
-            foreach(Path path in paths)
+            BaseTransforms[player] = new Dictionary<WarriorPath, Transform>();
+            foreach(WarriorPath path in paths)
             {
                 foreach(Transform playerTrans in player._spawnTransforms)
                 {
@@ -66,7 +65,7 @@ public class SpawnManager_CG : MonoBehaviour
     }
 
     #region Spawning
-    public Warrior Spawn(Warrior warriorPrefab, SPAWN_CONTROL spawnControl, Player_CG owner, Path path = null, float pathProgression = 0.0f)
+    public Warrior Spawn(Warrior warriorPrefab, SPAWN_CONTROL spawnControl, Player_CG owner, WarriorPath path = null, float pathProgression = 0.0f)
     {
         // create spell
         Warrior spawnedWarrior = Instantiate<Warrior>(warriorPrefab);
@@ -89,7 +88,7 @@ public class SpawnManager_CG : MonoBehaviour
         return spawnedWarrior;
     }
 
-    public SpellActive Spawn(SpellActive spellPrefab, SPAWN_CONTROL spawnControl, Player_CG owner, Path path = null, float pathProgression = 0.0f)
+    public SpellActive Spawn(SpellActive spellPrefab, SPAWN_CONTROL spawnControl, Player_CG owner, WarriorPath path = null, float pathProgression = 0.0f)
     {
         // create spelll
         SpellActive spawnedSpell = Instantiate<SpellActive>(spellPrefab);
@@ -112,7 +111,7 @@ public class SpawnManager_CG : MonoBehaviour
         return spawnedSpell;
     }
 
-    public SpellStandard Spawn(SpellStandard spellPrefab, SPAWN_CONTROL spawnControl, Player_CG owner, Path path = null, float pathProgression = 0.0f)
+    public SpellStandard Spawn(SpellStandard spellPrefab, SPAWN_CONTROL spawnControl, Player_CG owner, WarriorPath path = null, float pathProgression = 0.0f)
     {
         // create spell
         //SpellActive spawnedSpell = Instantiate<SpellActive>(spellPrefab);
@@ -142,11 +141,11 @@ public class SpawnManager_CG : MonoBehaviour
     //  - FROM_CURSOR: sets at the point of the cursor (path/distFromBase not used)
     //  - FROM_BASE: sets at the base, distFromBase is the distance away from the base (0-1)
     //  - RANDOM: sets at a random position between both bases (distFromBase not used)
-    public bool UpdateTransform( SPAWN_CONTROL spawnControl, Transform trans, Player_CG owner, Path path = null, float distFromBase = 0.0f)
+    public bool UpdateTransform( SPAWN_CONTROL spawnControl, Transform trans, Player_CG owner, WarriorPath path = null, float distFromBase = 0.0f)
     {
         if( spawnControl == SPAWN_CONTROL.FROM_CURSOR )
         {
-            if( InputManager.GetObjectUnderMouse<Path>(out path, out Vector3 cursorPos) && VerifyPlayerPath(owner, path))
+            if( InputManager.GetObjectUnderMouse<WarriorPath>(out path, out Vector3 cursorPos) && VerifyPlayerPath(owner, path))
             {
                 Transform baseTrans = BaseTransforms[owner][path];
                 // center cursor position
@@ -191,7 +190,7 @@ public class SpawnManager_CG : MonoBehaviour
 
 
     // checks if player can spawn from the path
-    public bool VerifyPlayerPath(Player_CG player, Path path)
+    public bool VerifyPlayerPath(Player_CG player, WarriorPath path)
     {
         if( player == null || path == null ) return false;
 

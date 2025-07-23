@@ -91,4 +91,11 @@ public class UserPlayer_CG : Player_CG
         }
         return false;
     }
+
+    [SerializeField] EndGameManager endGameManager;
+    public override void OnGameEnd(bool wonGame)
+    {
+        base.OnGameEnd(wonGame);
+        endGameManager.OnGameEnd(wonGame);
+    }
 }

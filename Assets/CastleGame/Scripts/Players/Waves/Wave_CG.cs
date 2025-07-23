@@ -9,10 +9,10 @@ public struct WaveSegment_Repeat_CG
     public float Spacing;
     public float Start;
     public Warrior Warrior;
-    public Path Path;
+    public WarriorPath Path;
     public SpellActive Spell;
 
-    public WaveSegment_Repeat_CG(Warrior warrior, Path path, int count, float spacing, float start)
+    public WaveSegment_Repeat_CG(Warrior warrior, WarriorPath path, int count, float spacing, float start)
     {
         Count = count;
         Spacing = spacing;
@@ -22,7 +22,7 @@ public struct WaveSegment_Repeat_CG
         Path = path;
     }
 
-    public WaveSegment_Repeat_CG(SpellActive spell, Path path, int count, float spacing, float start)
+    public WaveSegment_Repeat_CG(SpellActive spell, WarriorPath path, int count, float spacing, float start)
     {
         Count = count;
         Spacing = spacing;
@@ -45,7 +45,7 @@ public class Wave_CG : MonoBehaviour
     private float TimeBase = 0.0f;
     private float LastSpawn = 0.0f;
 
-    public void AddRepeatingSegment(Warrior warrior, Path path, int count = 1, float spacing = 0.0f, float start = 0.0f)
+    public void AddRepeatingSegment(Warrior warrior, WarriorPath path, int count = 1, float spacing = 0.0f, float start = 0.0f)
     {
         // adjust start from the base
         start += TimeBase;
@@ -58,7 +58,7 @@ public class Wave_CG : MonoBehaviour
         LastSpawn = Mathf.Max(LastSpawn, start + (count-1)*spacing);
     }
 
-    public void AddRepeatingSegment(SpellActive spell, Path path, int count = 1, float spacing = 0.0f, float start = 0.0f)
+    public void AddRepeatingSegment(SpellActive spell, WarriorPath path, int count = 1, float spacing = 0.0f, float start = 0.0f)
     {
         // adjust start from the base
         start += TimeBase;

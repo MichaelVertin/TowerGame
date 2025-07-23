@@ -10,12 +10,12 @@ public class AIPlayerCG : Player_CG
 {
     [SerializeField] public List<UserPlayer_CG> UserPlayers;
 
-    public List<Path> _paths;
+    public List<WarriorPath> _paths;
 
     protected override void Start()
     {
-        _paths = new List<Path>(SpawnManager_CG.instance.BaseTransforms[this].Keys);
-        _paths = new List<Path>();
+        _paths = new List<WarriorPath>(SpawnManager_CG.instance.BaseTransforms[this].Keys);
+        _paths = new List<WarriorPath>();
         foreach( var path in SpawnManager_CG.instance.BaseTransforms[this].Keys )
         {
             _paths.Add(path);
@@ -23,18 +23,18 @@ public class AIPlayerCG : Player_CG
         base.Start();
     }
 
-    public void SpawnAfterTime(float time, Warrior warrior, Path path)
+    public void SpawnAfterTime(float time, Warrior warrior, WarriorPath path)
     {
         StartCoroutine(SpawnAfterTime_IEnum(time, warrior, path));
     }
 
-    public IEnumerator SpawnAfterTime_IEnum(float time, Warrior warrior, Path path)
+    public IEnumerator SpawnAfterTime_IEnum(float time, Warrior warrior, WarriorPath path)
     {
         yield return new WaitForSeconds(time);
         Spawn(warrior, path);
     }
 
-    public void Spawn(Warrior warrior, Path path)
+    public void Spawn(Warrior warrior, WarriorPath path)
     {
         if( path != null)
         {
@@ -42,14 +42,14 @@ public class AIPlayerCG : Player_CG
         }
         else
         {
-            foreach(Path pathIter in _paths)
+            foreach(WarriorPath pathIter in _paths)
             {
                 Spawn(warrior, pathIter);
             }
         }
     }
 
-    public void Spawn(SpellActive spell, Path path)
+    public void Spawn(SpellActive spell, WarriorPath path)
     {
         if (path != null)
         {
@@ -57,7 +57,7 @@ public class AIPlayerCG : Player_CG
         }
         else
         {
-            foreach (Path pathIter in _paths)
+            foreach (WarriorPath pathIter in _paths)
             {
                 Spawn(spell, pathIter);
             }
@@ -66,13 +66,13 @@ public class AIPlayerCG : Player_CG
 
     public SpellActive SpawnRandomSpell()
     {
-        Path randomPath = GetRandomPath();
+        WarriorPath randomPath = GetRandomPath();
         SpellActive activeSpell = GetRandomSpell();
 
         return SpawnManager_CG.instance.Spawn(activeSpell, SPAWN_CONTROL.RANDOM, this, randomPath);
     }
 
-    protected Path GetRandomPath()
+    protected WarriorPath GetRandomPath()
     {
         return _paths[Random.Range(0, _paths.Count)];
     }

@@ -25,7 +25,7 @@ public class AIPlayer_Default : AIPlayerCG
     
     public IEnumerator temp()
     {
-        foreach (Path path in _paths)
+        foreach (WarriorPath path in _paths)
         {
             SpawnAfterTime(_spawnDelay * _shieldSpawnDelay, Prefabs_CG.instance.WarriorShield, path);
             SpawnAfterTime(_spawnDelay * _swordSpawnDelay, Prefabs_CG.instance.WarriorSword, path);
